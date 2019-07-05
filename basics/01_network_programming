@@ -406,3 +406,24 @@ CHAPTER 1 - NETWORK PROGRAMMING WITH PYTHON
     - To run the script:
 
         $ python RFC_download_urllib.py 2324
+
+
+
+- Example - Using 'requests' To Download RFC Documents
+
+    - Full Script 'RFC_download_requests.py'
+
+        #!/usr/bin/env python3
+
+        import sys, requests
+        try:
+            rfc_number = int(sys.argv[1])
+        except (IndexError, ValueError):
+            print('Must supply an RFC number as first argument.')
+            sys.exit(2)
+
+        template = 'http://www.rfc-editor.org/rfc/rfc{}.txt'
+        url = template.format(rfc_number)
+
+        rfc = requests.get(url).text
+        print(rfc)
