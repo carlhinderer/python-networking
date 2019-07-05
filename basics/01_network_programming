@@ -261,3 +261,40 @@ CHAPTER 1 - NETWORK PROGRAMMING WITH PYTHON
     - Each time a host requires an internet connection, the router will assign a public IP address that
         is not being used.  This increases security, since it is difficult for an external host to 
         enter the network since public addresses are always changing.
+
+
+
+- IPv4
+
+    - IPv4 addresses are 32 bits in length.  This limits the space to ~4.3 billion addresses.  
+
+
+    - IPv4 addresses are divided into 5 classes:
+
+        Class A = 1.0.0.0   - 126.255.255.255
+
+        Class B = 128.0.0.0 - 191.255.255.255
+
+        Class C = 192.0.0.0 - 223.255.255.255
+
+        Class D = 224.0.0.0 - 239.255.255.255
+
+        Class E = 240.0.0.0 - 254.255.255.255
+
+
+    - By definition, Class D and E addresses cannot be used as source addresses.
+
+
+    - Special addresses include:
+
+        0.x.x.x            = The identifier of all IPv4 networks (only valid as source address)
+
+        127.x.x.x          = Identifies physical loopbacks in network equipment
+
+        255.255.255.255    = Limited broadcast destination address
+
+
+
+- IPv6
+
+    - 
