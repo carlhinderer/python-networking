@@ -297,4 +297,81 @@ CHAPTER 1 - NETWORK PROGRAMMING WITH PYTHON
 
 - IPv6
 
-    - 
+    - IPv6 addresses are 128 bits (8 groups of 4 hex digits / 16 bits)
+
+        fe80::e53f: e43b: ad07: 9cab
+
+
+
+- Sockets
+
+    - The 'socket' module is Python's standard interface for the transport layer.  It provides functions
+        for interacting with TCP and UDP, as well as for looking up hostnames through DNS.  It is the
+        low-level networking interface for Python.
+
+
+    - A socket is defined by the IP address of the machine, the port on which it listens, and the protocol
+        it uses.  
+
+
+    - Sockets are classified into TCP stream sockets ('socket.SOCK_STREAM') or UDP datagram sockets
+        ('socket.SOCK_DGRAM').  
+
+
+    - Sockets can also be classified according to their family.  We have Unix sockets ('socket.AF_UNIX')
+        which are bound to file system nodes, IPv4 sockets ('socket.AF_INET'), and IPv6 sockets
+        ('socket.AF_INET6'), among other specialized types.
+
+
+    - To create a socket, the 'socket.socket()' constructor is used, which can take the family, type,
+        and protocol as optional parameters.
+
+        # Create a new socket
+        >>> my_socket = socket.socket(socket_family, socket_type, protocol=0)
+
+        socket_family: Either 'AF_UNIX' or 'AF_INET' ('AF_INET' is default)
+        socket_type:   Either 'SOCK_STREAM' or 'SOCK_DGRAM' ('SOCK_STREAM' is default)
+        protocol:      Usually omitted, defaults to 0
+
+
+
+- Client Socket Methods
+
+    - To connect to a remote socket in one direction, we can use the 'connect()' method by passing in
+        the host and port.
+
+
+    - Example:
+
+        # Create the socket
+        >>> import socket
+        >>> client_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+
+        # Connect to the web server on port 80
+        >>> client_socket.connect(("www.packtpub.com", 80))
+
+
+
+- Server Socket Methods
+
+    - The 'bind()' method allows us to define on which port our server will be listening to communications.
+
+
+    - The 'listen(backlog)' method makes the socket start listening for connections.
+
+
+    - The 'accept()' methods is used for accepting a connection.
+
+
+    - Example:
+
+        >>> import socket
+
+        # Create the socket
+        >>> server_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+
+        # Bind the socket to localhost on port 80
+        >>> server_socket.bind(('localhost', 80))
+
+        # Become a server socket and listen to a maximum of 10 connections
+        >>> server_socket.listen(10)
