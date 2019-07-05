@@ -127,3 +127,93 @@ CHAPTER 1 - NETWORK PROGRAMMING WITH PYTHON
         3. Heavyweight = Has the ability to verify that the connection can be established through a 
             socket before any packet can be sent.  To do this, it uses 3 sending confirmation packets,
             called 'SYN', 'SYN-ACK', and 'ACK'.
+
+
+
+- IP Addresses and Ports
+
+    - IP Addresses are addresses that help to uniquely identify a device over the internet.  A port is
+        an endpoint for communication in an operating system.
+
+
+    - When you connect to the internet, your device is assigned a public IP address, and each website
+        you visit also has a public IP address.
+
+        Total IPv4 Space: ~4.2 billion addresses
+        Total IPv6 Space: ~3.4 * 10^38 addresses
+
+
+    - Ports are values (0 - 65,535) used to identify the processes that are communicating.  At each end,
+        each process that intervenes in the communication process uses a single port to send and
+        receive data.
+
+
+    - Common Ports:
+
+        22:  SSH
+        23:  Telnet
+        25:  SMTP
+        53:  DNS
+        80:  HTTP
+        443: HTTPS
+
+
+    - A private IP address is used for an internal network of an organization.  They range from:
+
+        10.0.0.0 - 10.255.255.255
+        172.16.0.0 - 172.31.255.255
+        192.168.0.0 - 192.168.255.255
+
+
+    - A public IP address is an IP address that your home or business router receives from your ISP.
+
+
+
+- Network Interfaces
+
+    - To find out which IP addresses have been assigned to your computer:
+
+        $ ip addr
+
+
+    - Every device has a virtual interface called the loopback address, which is listed as 'interface 1'.
+        The interface doesn't actually connect to anything outside of the device, and only the device
+        itself can communicate with it.  It's useful for local network application testing, and can
+        also be used as a means of interprocess communication.  It is almost always assigned to 
+        '127.0.0.1', and is known as 'localhost'.
+
+
+
+- DHCP
+
+    - IP addresses can be assigned to a device by a network administrator in 2 ways:
+
+        1. Statically, where the device's OS is manually configured with the IP address
+
+        2. Dynamically, where the device's OS is configured using DHCP
+
+
+    - When using DHCP, as soon as the device first connects to a network, it is automatically allocated
+        an address by a DHCP server from a predefined pool.  Some network devices, like home broadband
+        routers, provide a DHCP server out of the box.  Otherwise, a DHCP server must be set up by a 
+        network administrator.
+
+
+    - DHCP environments require a DHCP server that's been configured with the appropriate parameters for
+        the proposed networks, such as the pool of available IP addresses, subnet masks, and the 
+        gateway and server name addresses.
+
+
+    - A DHCP server dynamically allocates IP addresses instead of having to depend on the static IP
+        address and is responsible for assigning, leasing, reallocating, and renewing IP addresses.
+
+
+    - When a computer in a network wants to obtain a valid network configuration (usually when starting
+        up the machine), it issues a 'DHCP Discover' request.  When this request (usually made through
+        a UDP broadcast packet) reaches a DHCP server, a negotiation is established where the server 
+        grants the use of an IP to a client for a certain time.
+
+
+    - To make a DHCP request, the 'dhclient' command is used:
+
+        $ dhclient --help
