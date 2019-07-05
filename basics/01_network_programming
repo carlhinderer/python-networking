@@ -217,3 +217,47 @@ CHAPTER 1 - NETWORK PROGRAMMING WITH PYTHON
     - To make a DHCP request, the 'dhclient' command is used:
 
         $ dhclient --help
+
+
+
+- DNS
+
+    - DNS allows for the association of domain names with IP addresses.  DNS is a distributed and
+        hierarchical database.  
+
+
+    - The DNS service is a pillar of the network, so its availability must be absolute.  To achieve this,
+        redundant servers and extensive caching are used.
+
+
+    - The 'nslookup' tool is used to query DNS from the command line.
+
+        $ nslookup packtpub.com
+
+
+    - When we type a domain address into a web browser, DNS is automatically translating the domain name
+        into an IP address in the background.
+
+
+
+- NAT
+
+    - NAT is a mechanism that makes the traffic from a private network appear to be coming from a single
+        public address.  Thanks to this patch, large companies can use one public IP address instead of
+        one address for each machine on the network.  It is also used to connect home networks to the
+        internet.
+
+
+    - There are 2 types of operations with NAT:
+
+        1. Static = A private IP address is always translated into the same public IP address.  This mode
+             of operation would allow a host within the network to be visible from the internet.
+
+        2. Dynamic = The router is assigned several public IP addresses so that each private IP address
+             is mapped using one of the public IP addresses that the router has assigned.  This is done
+             so that each private IP address corresponds to at least one public IP address.
+
+
+    - Each time a host requires an internet connection, the router will assign a public IP address that
+        is not being used.  This increases security, since it is difficult for an external host to 
+        enter the network since public addresses are always changing.
