@@ -1,0 +1,53 @@
+-----------------------------------------------------------
+CHAPTER 1 - NETWORK PROGRAMMING WITH PYTHON
+-----------------------------------------------------------
+
+- TCP/IP Protocol Stack
+
+    4. Application Layer 
+
+         - This layer manages the high-level protocols, including representation, coding, and dialogue
+             control issues.  It handles everything related to applications, and the data is packed
+             appropriately for the next layer.
+
+         - It is a user process that cooperates with other processes on the same host or a different one.
+
+         - Examples include TELNET, FTP, and SMTP
+
+
+    3. Transport Layer
+
+         - 
+
+
+
+- OSI Model Stack
+
+    [Host Layers]
+
+    7. Application = High-level APIs, including resource sharing and remote file access.
+                     (Protocol Data Unit = Data)
+
+    6. Presentation = Translation of data between a networking service and an application, including 
+                        character encoding, data compression, and encrpytion/decryption.
+                        (Protocol Data Unit = Data)
+
+    5. Session = Managing communication sessions (ie continuous exchange of information in the form of
+                   back and forth transmissions between 2 nodes)
+                   (Protocol Data Unit = Data)
+
+    4. Transport = Reliable transmission of data segments between points on a network, including 
+                     segmentation, acknowledgement, and multiplexing
+                     (Protocol Data Unit = Segment, Datagram)
+
+    [Media Layers]
+
+    3. Network = Structuring and managing a multi-node network, including addressing, routing, and
+                   traffic control.
+                   (Protocol Data Unit = Packet)
+
+    2. Data Link = Reliable transmission of data frames between 2 nodes connected by a physical layer.
+                   (Protocol Data Unit = Frame)
+
+    1. Physical = Transmission and reception of raw bit streams over a physical medium.
+                  (Protocol Data Unit = Symbol)
