@@ -17,7 +17,29 @@ CHAPTER 1 - NETWORK PROGRAMMING WITH PYTHON
 
     3. Transport Layer
 
-         - 
+         - This layer handles QoS, reliability, flow control, and error correction.  It provides data 
+             transfer.
+
+         - TCP is connection-oriented and provides reliable network communications.  UDP is not
+             connection-oriented.
+
+
+    2. Network Layer
+
+         - The internet layer's purpose is to send packets from the source of any network and make them
+             reach their destination, regardless of the route they take to get there.
+
+         - The IP is the most important protocol of the network layer.  It is non-connection-oriented.  The
+             message unit in an IP network is called an IP datagram.
+
+
+    1. Network Access Layer
+
+         - Also called the 'host-to-host', 'link', or 'data link' layer, it is the interface to network
+             hardware.
+
+         - Includes the LAN and WAN protocols, and the details included in the physical and data link
+             layers in the OSI model.
 
 
 
@@ -51,3 +73,57 @@ CHAPTER 1 - NETWORK PROGRAMMING WITH PYTHON
 
     1. Physical = Transmission and reception of raw bit streams over a physical medium.
                   (Protocol Data Unit = Symbol)
+
+
+
+- UDP
+
+    - UDP is a non-connection-oriented protocol.  This means that when 'MachineA' sends packets to 
+        'MachineB', the flow is unidirectional.  The data transfer is made without warning the recipient,
+        and the recipient receives the data without sending a confirmation to the sender.
+
+
+    - This is because the data that's sent by the UDP protocol does not allow you to transfer information
+        related to the sender.  Therefore, the recipient will not know about the sender's data, except
+        their IP address.
+
+
+    - UDP is:
+
+        1. Unreliable = There is no concept of packet retransmission.  Therefore, when a UDP packet is sent,
+             it is not possible to know whether the packet has reached its destination.
+
+        2. Not ordered = The order in which the packets are sent and received cannot be determined.
+
+        3. Datagrams = The integrity of packet deliver is done individually and can only be checked to
+             ensure packages arrived correctly.
+
+        4. Lightweight and fast = Is used when speed is an important factor.
+
+
+
+- TCP
+
+    - TCP is connection-oriented.  When 'MachineA' sends data to 'MachineB', the recipient is informed
+        of the arrival of this data and confirms its good reception.
+
+
+    - Here, the CRC control of data intervenes, which is based on a mathematical equation that allows 
+        you to verify the integrity of the transmitted data.  In this way, if the received data is 
+        corrupted, TCP allows the recipients to request the sender to send them again.
+
+
+    - When data is provided to the IP protocol, it binds it in IP datagrams, fixing the 'field protocol'
+        with 6, so you know in advance the protocol is TCP.
+
+
+    - TCP is:
+
+        1. Reliable = Has the ability to manage the attempts that can be made to send a message if a 
+             packet is lost, and can resend those fragments that were not sent on the first attempt.
+
+        2. Ordered = The messages are delivered in a particular order.
+
+        3. Heavyweight = Has the ability to verify that the connection can be established through a 
+            socket before any packet can be sent.  To do this, it uses 3 sending confirmation packets,
+            called 'SYN', 'SYN-ACK', and 'ACK'.
