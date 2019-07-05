@@ -375,3 +375,34 @@ CHAPTER 1 - NETWORK PROGRAMMING WITH PYTHON
 
         # Become a server socket and listen to a maximum of 10 connections
         >>> server_socket.listen(10)
+
+
+
+- Example - Using 'urllib' To Download RFC Documents
+
+    - The 'urllib' and 'requests' modules are commonly used to make HTTP requests.  In this example, we
+        use 'urllib' to download an RFC whose number is specified on the command line.
+
+
+    - Full Script 'RFC_download_urllib.py'
+
+        #!/usr/bin/env python3
+
+        import sys, urllib.request
+        try:
+            rfc_number = int(sys.argv[1])
+        except (IndexError, ValueError):
+            print('Must supply an RFC number as first argument.')
+            sys.exit(2)
+
+        template = 'http://www.rfc-editor.org/rfc/rfc{}.txt'
+        url = template.format(rfc_number)
+
+        rfc_raw = urllib.request.urlopen(url).read()
+        rfc = rfc_raw.decode()
+        print(rfc)
+
+
+    - To run the script:
+
+        $ python RFC_download_urllib.py 2324
