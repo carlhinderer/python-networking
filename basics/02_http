@@ -60,3 +60,62 @@ CHAPTER 2 - HTTP
         >>> import json
         >>> response = urlopen(url, timeout=30)
         >>> json_response = json.loads(response.read())
+
+
+
+- HTTP Status Codes
+
+    - We can get the HTTP response code with the 'status' attribute:
+
+        >>> response.status
+        200
+
+
+    - Groups of response codes:
+
+        100 = Informational
+        200 = Success
+        300 = Redirection
+        400 = Client Error
+        500 = Server Error
+
+
+
+- Handling urllib Exceptions
+
+    - Here, we'll request a nonexistent resource and handle the exception:
+
+        >>> import urllib.error
+        >>> from urllib.request import urlopen
+
+        >>> try:
+                urlopen('http://www.ietf.org/rfc/rfc0.txt')
+            except urllib.error.HTTPError as e:
+                print('Exception', e)
+                print('status', e.code)
+                print('reason', e.reason)
+                print('url', e.url)
+
+
+
+- HTTP Headers
+
+    - HTTP requests consist of 2 main parts, a header and a body.  Headers are the lines of information
+        that contain specific metadata about the response and tell the client how to interpret it.  With
+        urllib, we can check the headers.
+
+
+    - To inspect the headers from a response:
+
+        >>> import urllib.request
+        >>> http_response = urllib.request.urlopen(url)\
+
+        # Print the header values
+        >>> if http_response.code == 200:
+
+                # Print all the headers
+                print(http_response.headers)
+
+                # Iterate through the headers
+                for key, value in http_response.getheaders():
+                    print(key, value)
