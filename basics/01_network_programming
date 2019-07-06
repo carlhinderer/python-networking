@@ -524,3 +524,22 @@ CHAPTER 1 - NETWORK PROGRAMMING WITH PYTHON
 
         # Apply the function to each packet
         >>> cap.apply_on_packets(print_info_layer)
+
+
+
+- Example - Count Packets
+
+    - This will append each packet to a list and print the count of the packets:
+
+        >>> import pyshark
+        >>> packets_array = []
+
+        >>> def counter(*args):
+                packets_array.append(args[0])
+ 
+        >>> def count_packets():
+                cap = pyshark.FileCapture(CAPTURE_FILENAME, keep_packets=False)
+                cap.apply_on_packets(counter, timeout=10000)
+                return len(packets_array)
+
+        >>> print("Packets number:"+str(count_packets()))
