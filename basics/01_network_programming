@@ -463,6 +463,64 @@ CHAPTER 1 - NETWORK PROGRAMMING WITH PYTHON
             if not len(buf):
                 break
             rfc_bytes += buf
-            
+
         rfc = rfc_bytes.decode('utf-8')
         print(rfc)
+
+
+
+- Using Wireshark with pyshark
+
+    - Wireshark is a packet sniffer (aka a protocol analyzer).  It is composed mainly of 2 elements:
+
+        1. Packet capture library = receives a copy of each data link frame that is either sent or
+             received from the terminal it's running on
+
+        2. Packet analyzer = shows the fields corresponding to each captured packet
+
+
+    - We can use the 'pyshark' library to analyze the network traffic in Python, since everything
+        Wireshark decodes in each packet is made available as a variable.
+
+
+    - Here is an example of reading packets stored in a pcap file:
+
+        >>> import pyshark
+        >>> cap = pyshark.FileCapture('http.cap')
+        >>> cap
+        >>> print(cap)
+
+
+    - Here, we can filter the packets in the 'FileCapture' object:
+
+        >>> cap = pyshark.FileCapture('http.cap', display_filter='dns')
+        >>> for pkt in cap:
+                print(pkt.highest_layer)
+
+
+
+- LiveCapture with pyshark
+
+    - We can also use pyshark to sniff from an interface in real time.
+
+        >>> import pyshark
+
+        # Sniff from an interface in real time
+        >>> capture = pyshark.LiveCapture(interface='eth0')
+        >>> capture.sniff(timeout=10)
+
+
+
+- Example - Iterate Through Packets
+
+    - Here, we iterate through the packets and apply a function to each.
+
+        >>> cap = pyshark.FileCapture('http.cap', keep_packets=False)
+
+        >>> def print_info_layer(packet):
+                print("[Protocol:] " + packet.highest_layer)
+                print("[Source IP:] " + packet.ip.source)
+                print("[Destination IP:] " + packet.ip.dst)
+
+        # Apply the function to each packet
+        >>> cap.apply_on_packets(print_info_layer)
