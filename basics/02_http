@@ -42,7 +42,7 @@ CHAPTER 2 - HTTP
         >>> from urllib.request import urlopen
 
         # Send a request and receive a response (in this case an HTML page) from a resource
-        >>> response = urlopen('http://www.packtpub.com')
+        >>> response = urlopen('http://packtpub.com')
 
         # Print the first line of the HTML page we received
         >>> response.readline()
@@ -119,3 +119,45 @@ CHAPTER 2 - HTTP
                 # Iterate through the headers
                 for key, value in http_response.getheaders():
                     print(key, value)
+
+                # Get just a single header
+                user_agent = http_response.getheader('User-agent')
+
+
+
+- Customizing urllib Requests
+
+    - To customize requests, we can add headers before sending them.  Here, we retrieve the Dutch version
+        of the Debian home page.
+
+        # Create the request
+        >>> from urllib.request import Request, urlopen
+        >>> req = Request('http://www.debian.org')
+
+        # Add a header to the request
+        >>> req.add_header('Accept-Language', 'nl')
+
+        # Submit the customized request
+        >>> response = urlopen(req)
+
+        # Print the first 5 lines of the response
+        >>> response.readlines()[:5]
+
+
+    - We can view the headers present in a request before we send it.
+
+        # View the headers in our request
+        >>> req.header_items()
+
+
+    - Here, we add a dictionary of headers to our request:
+
+        # Values of headers for request
+        >>> USER_AGENT = 'Mozilla/5.0 (Windows NT 5.1; rv:20.0) Gecko/20100101 Firefox/20.0'
+        >>> URL = 'http://www.debian.org'
+
+        # Create dictionary of headers
+        >>> headers = {'Accept-Language': 'nl','User-agent': USER_AGENT}
+
+        # Create the request with out customized values
+        >>> request = Request(URL,headers=headers)
