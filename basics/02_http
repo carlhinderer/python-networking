@@ -161,3 +161,28 @@ CHAPTER 2 - HTTP
 
         # Create the request with out customized values
         >>> request = Request(URL,headers=headers)
+
+
+
+- Getting Headers with a Proxy
+
+    - By default, the request handler uses a 'ProxyHandler' instance that reads your environment variables
+        to see if a proxy server is specified.  
+
+
+    - If we need to specify a proxy for our connection, we can use a custom 'ProxyHandler' instance, 
+        passing in a dictionary with the address of the proxy server.
+
+        # Parameters for request
+        >>> import urllib.request, urllib.parse, urllib.error
+        >>> URL = 'https://www.github.com'
+        >>> PROXY_ADDRESS = '165.24.10.8:8080'
+
+        # Set up the proxy server
+        >>> proxy = urllib.request.ProxyHandler({'http': PROXY_ADDRESS})
+        >>> opener = urllib.request.build_opener(proxy)
+        >>> urllib.request.instalL_opener(opener)
+
+        # Build the request using the proxy server
+        >>> resp = urllib.request.urlopen(URL)
+        >>> print("Proxy server returns response headers: %s" % resp.headers)
