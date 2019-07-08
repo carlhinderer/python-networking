@@ -341,3 +341,15 @@ CHAPTER 2 - HTTP
 
     # Make a request using the proxy settings
     >>> requests.get('http://example.org', proxies=proxy_dictionary)
+
+
+
+- Getting whois Information
+
+    - We can use the requests module and the 'whois.domaintools.com' service to get information about the
+        domain we are analyzing, such as the IP address and location.
+
+        >>> domain = input("Enter the domain : ")
+        >>> url = 'http://whois.domaintools.com/' + domain
+        >>> headers = {'User-Agent': 'wswp'}
+        >>> resp = requests.get(url, headers=headers)
