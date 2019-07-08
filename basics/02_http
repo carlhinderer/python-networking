@@ -386,3 +386,51 @@ CHAPTER 2 - HTTP
          'json': {'key': 'value'},
          'origin': 'x.x.x.x',
          'url': 'http://httpbin.org/post'}
+
+
+
+- Handling Forms with urllib
+
+    - Forms use the POST method to send data to the server.  The data entered into the form will go 
+        into the body of the request.  We can put any bytes data in there and declare its type by adding
+        a 'Content-Type' header to our request with the appropriate MIME type.
+
+
+    - Suppose we have a form where a customer enters their name, phone number, email address, and desired
+        pizza size.  The form information will be passed through a dictionary structure in an extra 
+        field called data.  The form values must be formatted the same way as query string parameters,
+        and must be URL-encoded.  Also, 'Content-Type' must be set to a MIME type of
+        'applcation/x-www-form-urlencoded'.
+
+
+    - To do this in urllib:
+
+        # Specify form entries
+        >>> data_dictionary = {'custname': 'customer','custtel': '323232', 'size': 'large',
+                               'custemail': 'email@domain.com'}
+
+        # Encode the data
+        >>> data = urlencode(data_dictionary).encode('utf-8')
+
+        # Add the data to the request, which automatically makes it a POST request
+        >>> from urllib import Request
+        >>> req = Request('http://httpbin.org/post', data=data)
+
+        # Set the MIME type in the header
+        >>> req.add_header('Content-Type', 'application/x-www-form-urlencode;charset=UTF-8')
+
+        # Send the request
+        >>> response = urlopen(req)
+
+        # Look at the response
+        >>> response_dictionary = json.load(response)
+        >>> print(response_dictionary)
+        {'args': {}, 
+         'data': 'custname=customer&custtel=323232&size=large&custemail=email%40domain.com', 
+         'files': {}, 
+         'form': {}, 
+         'headers': {'Accept-Encoding': 'identity', 'Connection': 'close', 'Content-Length': '72', 
+                     'Content-Type': 'application/x-www-form-urlencode;charset=UTF-8', 
+                     'Host': 'httpbin.org', 'User-Agent': 'Python-urllib/3.6'},
+         ...
+        }
