@@ -108,7 +108,7 @@ CHAPTER 2 - HTTP
     - To inspect the headers from a response:
 
         >>> import urllib.request
-        >>> http_response = urllib.request.urlopen(url)\
+        >>> http_response = urllib.request.urlopen(url)
 
         # Print the header values
         >>> if http_response.code == 200:
@@ -181,7 +181,7 @@ CHAPTER 2 - HTTP
         # Set up the proxy server
         >>> proxy = urllib.request.ProxyHandler({'http': PROXY_ADDRESS})
         >>> opener = urllib.request.build_opener(proxy)
-        >>> urllib.request.instalL_opener(opener)
+        >>> urllib.request.install_opener(opener)
 
         # Build the request using the proxy server
         >>> resp = urllib.request.urlopen(URL)
@@ -235,3 +235,55 @@ CHAPTER 2 - HTTP
             links = extract_links(packtpub)
             for link in links:
                 print(link)
+
+
+
+- Getting Images from a URL with urllib
+
+    - Similarly to how we extracted links with regular expressions, we can extract image locations by
+        looking for <img> tags.
+
+        >>> def extract_image_locations(page):
+                img_regex = re.compile('<img[^>]+src=["\'](.*?)["\']', re.IGNORECASE)
+                return img_regex.findall(page)
+
+
+
+- Working with URLs
+
+    - The 'urllib.parse' module is used for breaking a URL into its component parts.  
+
+        >>> from ulrllib.parse import urlparse
+
+        # Parse a URL and look at its components
+        >>> result = urlparse('https://www.packtpub.com/tech/Python')
+
+        >>> result
+         ParseResult(scheme='http', netloc='www.packtpub.com', path='/tech/Python',
+                     params='', query='', fragment='')
+
+
+    - Here is a url with a query string:
+
+        >>> result = urlparse('https://search.packtpub.com/?query=python')
+
+        >>> result.query
+        'query=python'
+
+
+    - Here, we convert the query string parameters into a dictionary:
+
+        >>> from urllib.parse import parse_qs
+        >>> result = result = urlparse('https://search.packtpub.com/?query=python')
+
+        >>> parse_qs(result.query)
+        {'query': ['python']}
+
+
+    - Here, we encode a dictionary as a query string:
+
+        >>> from urllib.parse import urlencode
+        >>> params = urllib.parse.urlencode({'user': 'user123', 'password': 'pw123'})
+
+        >>> params
+         'user=user123&password=pw123'

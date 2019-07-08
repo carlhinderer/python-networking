@@ -271,15 +271,15 @@ CHAPTER 1 - NETWORK PROGRAMMING WITH PYTHON
 
     - IPv4 addresses are divided into 5 classes:
 
-        Class A = 1.0.0.0   - 126.255.255.255
+        Class A = 1.0.0.0   - 126.255.255.255    (Very Large Networks)
 
-        Class B = 128.0.0.0 - 191.255.255.255
+        Class B = 128.0.0.0 - 191.255.255.255    (Medium Networks)
 
-        Class C = 192.0.0.0 - 223.255.255.255
+        Class C = 192.0.0.0 - 223.255.255.255    (Small Networks)
 
-        Class D = 224.0.0.0 - 239.255.255.255
+        Class D = 224.0.0.0 - 239.255.255.255    (Multicast)
 
-        Class E = 240.0.0.0 - 254.255.255.255
+        Class E = 240.0.0.0 - 254.255.255.255    (Experimental)
 
 
     - By definition, Class D and E addresses cannot be used as source addresses.
