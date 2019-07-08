@@ -546,4 +546,49 @@ CHAPTER 2 - HTTP
         ]
 
 
-    - 
+    - The 'expires' attribute represents the amount of time the server would like the client to hold on
+        to the cookie for.
+
+    - The 'HttpOnly' flag indicates the client should only allow access to a cookie when the access is
+        part of an HTTP request or response.  Other methods should be denied access.
+
+    - If the value of 'secure' is true, the cookie should only be sent over https.
+
+
+
+- Cookie Handling with requests
+
+    - As with forms, the 'requests' module makes it easy to inspect cookies with less code.
+
+        # Make a request
+        >>> import requests
+        >>> response = requests.get('http://www.github.com')
+
+        # Inspect cookies received
+        >>> print(response.cookies)
+        [<Cookie logged_in=no for .github.com/>,
+
+         <Cookie _gh_sess=N0RTMHpreVk3cUk0N05qbFNpNncyajU3MVNZVWtINmZQVTUrdnlpQ1lnYnZ6WGdXWU1aQ0d2VXJQVk4
+                          wcE1IYWd4Nk54RHRrMWdjNXAwL0lOei9JenlPeUJOeEZkcTRTSTlwTWtveEt0ei9XOWlWZGNwTXNzbm
+                          d6Tk93ekcrem9XZDduQzdjdjZXWVJEOXpNVUFXOTZRUWRYalZFay9mWDAvc2NlREJSdEREb1hOUC9LR
+                          2prYi9ZQ3FoOHlORHY3L0VvN3Z4MXk0WWJyWklyMXZnSGJXQT09LS1lYlkzY1pWRXBnWUlncjRaaUJa
+                          cGhnPT0%3D--85b693ec8eee1f743fcaa3dc382ee5048cfda6f1 for github.com/>, 
+
+         <Cookie has_recent_activity=1 for github.com/>
+        ]>
+
+
+        # Use the 'Session' class to get the same information
+        >>> session = requests.Session()
+        >>> response = session.get('http://www.github.com')
+        >>> print(session.cookies.get_dict())
+
+
+    - We can also get the attributes from the cookies as needed.
+
+        >>> for cookie in response.cookies:
+                print('Name:', cookie.name)
+                print('Value:', cookie.value)
+                print('Secure:', cookie.secure)
+                if 'httponly' in cookie._rest.keys():
+                    print('HttpOnly: true')
