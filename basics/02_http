@@ -592,3 +592,73 @@ CHAPTER 2 - HTTP
                 print('Secure:', cookie.secure)
                 if 'httponly' in cookie._rest.keys():
                     print('HttpOnly: true')
+
+
+
+- HTTP Authentication Mechanisms
+
+    - There are 2 authentication mechanisms supported natively in the HTTP protocol: 
+
+        1. HTTP Basic = Based on forms, uses Base64 to encode the username and password separated by a
+                          colon (user: password).  Only encodes without encrypting.
+
+        2. HTTP Digest = Uses MD5 or SHA1 to encrypt the username, key, and realm hashes.
+
+
+
+- HTTP Basic Authentication
+
+    - Basic access authentication assumes the client will be identified by a username and password.  
+
+
+    - When the browser client initially accesses a site using this system, the server replies with a 401
+        Response, which contains the 'www-Authenticate' tag with the 'Basic' value and the name of the
+        protected domain.
+
+        ie WWW-Authenticate: Basic realm = "www.domainProtected.com"
+
+
+    - The client responds to the server with an 'Authorization' tag, which contains the 'Basic' value
+        and the concatenation of the Base64 login and password.
+
+        ie Authorization : Basic b3dhc3A6cGFzc3dvcmQ =
+
+
+    - To use Basic Authentication to provide credentials using the 'requests' module:
+
+        # Send the request
+        >>> import requests
+        >>> from requests.auth import HTTPBasicAuth
+        >>> response = requests.get('https://api.github.com/user', auth=('user', 'password'))
+
+        # Print the response
+        >>> print('Response.status_code:'+ str(response.status_code))
+        >>> if response.status_code == 200:
+                print('Login successful :'+response.text)
+
+
+
+- HTTP Digest Authentication
+
+    - HTTP Digest was designed to improve the Basic Authentication process.  MD5 is normally used to 
+        encrypt the user information, key, and realm, although other algorithms like SHA1 are also used.
+
+
+    - HTTP Digest uses a one-way hashing cryptographic algorithm to first encrypt authentication information,
+        then add a unique connection value.  The value is used by the client to calculate the password
+        response.
+
+
+    - To send a request with HTTP Digest from the 'requests' module:
+
+        >>> import requests
+        >>> from requests.auth import HTTPDigestAuth
+        
+        # Send the request
+        >>> protected_url = 'http://httpbin.org/digest-auth/auth/user/pass'
+        >>> response = requests.get(protected_url, auth=HTTPDigestAuth(user, passwd))
+
+        # Print the response
+        >>> print('Response.status_code:'+ str(response.status_code))
+        >>> if response.status_code == 200:
+                print('Login successful :'+str(response.json()))
