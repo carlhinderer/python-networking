@@ -517,6 +517,9 @@ CHAPTER 2 - HTTP
         our requests.  It will also add any further cookies received to the jar.
 
 
+
+- Inspecting Cookies with urllib
+
     - To inspect the cookies we received:
 
         >>> cookies = list(cookie_jar)
@@ -541,3 +544,6 @@ CHAPTER 2 - HTTP
                path_specified=True, secure=False, expires=1542829799, discard=False, comment=None,
                comment_url=None, rest={}, rfc2109=False)
         ]
+
+
+    - 
