@@ -434,3 +434,110 @@ CHAPTER 2 - HTTP
                      'Host': 'httpbin.org', 'User-Agent': 'Python-urllib/3.6'},
          ...
         }
+
+
+
+- Handling Forms with requests
+
+    - The requests library takes care of the encoding and formatting for us.
+
+        >>> import requests
+        >>> data_dictionary = {'custname': 'customer','custtel': '323232', 'size': 'large',
+                               'custemail': 'email@domain.com'}
+
+        # Send request
+        >>> response = requests.post("http://httpbin.org/post",data=data_dictionary)
+
+        # Print out the http status_code
+        >>> print("HTTP Status Code: " + str(response.status_code))
+
+
+
+- Cookies
+
+    - A cookie is a file created by a website that contains small amounts of data and is sent between a
+        sender and a receiver.  A cookie's main purpose is to identify the user by storing their activity
+        history on a specific website, so the most appropriate content according to their habits can be
+        offered.
+
+
+    - Each time a website is visited for the first time, a cookie is saved in the browser with little
+        information.  Then, when the same page is visited again, the server asks for the same cookie to
+        fix the configuration of the site and make the visit personalized.  They may have a simple purpose,
+        like recording the last time the user visited a web site, or a more complex purpose, like storing
+        a shopping cart full of items.
+
+
+    - 'Session Cookies' have a short lifespan, since they are deleted when the browser is closed.  
+        'Persistent Cookies' are deleted only by clearing browser data, and may also have an expiration
+        data attached.
+
+
+    - Secure cookies store encrypted information to prevent the data stored in them from being vulnerable
+        to 3rd party attacks.  They are used only in HTTPS connections.
+
+
+    - Servers use cookies in various ways.  They can add a unique ID, which tracks a client as they move
+        around the site.  They can store a login token, which will automatically log the client back in
+        if they leave the site and come back.  They can be used for storing user preferences.
+
+
+    - Because HTTP is a stateless protocol, cookies are the only way of tracking a client between requests.
+
+
+
+- Handling Cookies with urllib
+
+    - To work with cookies in urllib, we can use the 'HTTPCookieProcessor' handler from 'urllib.request'.
+
+        >>> import urllib
+        >>> cookie_processor = urllib.request.HTTPCookieProcessor()
+
+
+    - If we want to access these cookies or send our own cookies, we can pass a 'CookieJar' object to
+        the initializer.  This will automatically extract the cookies that a server sends us.
+
+        # Create an empty cookie jar
+        >>> from http.cookiejar import CookieJar
+        >>> cookie_jar = CookieJar()
+
+        # Create and install an opener
+        >>> cookie_processor = urllib.request.HTTPCookieProcessor(cookie_jar)
+        >>> opener = urllib.request.build_opener(cookie_processor)
+        >>> urllib.install_opener(opener)
+
+        # Use the opener to make an http request
+        >>> opener.open('http://www.github.com')
+        >>> len(cookie_jar)
+        3
+
+
+    - Whenever we use the opener to make further requests, the 'HTTPCookieProcessor' will check our
+        'cookie_jar' to see if it contains any cookies for the site, and will automatically add them to
+        our requests.  It will also add any further cookies received to the jar.
+
+
+    - To inspect the cookies we received:
+
+        >>> cookies = list(cookie_jar)
+        >>> cookies
+        [Cookie(version=0, name='logged_in', value='no', port=None, port_specified=False,
+                domain='.github.com', domain_specified=True, domain_initial_dot=True, path='/',
+                path_specified=True, secure=True, expires=2173978199, discard=False, comment=None,
+                comment_url=None, rest={'HttpOnly': None}, rfc2109=False), 
+
+        Cookie(version=0, name='_gh_sess', 
+               value='cDlMVjFOdHM1djhLYWRGeGpPMTIxLytnRzdHNlRQT3VkUngxLzY2UkpmcGI1KzhNYWd4TzBzb2VJK0cxcWZ
+               BeGdpOFA3ZE95RXd5Nnp0WDdDWlQ0dHpwSkYzQ0hOZ2o1R3JkOXBPZTdCL0N4dGVMZ0dHc0VKZ0RreW5raDdRNDcrS
+               0tTTlZiY1pOcGw5NkdkNDZBTnlQNTBiTDRzRTRIeVZPNVY2RWdUZ3VvYkFsczNqd3psQ0JBSld2Rlk4d3QvQm5XRm1
+               iSGtVeVpTdG9haVVzMFhnQT09LS1pR3NNNnN1VmRocVJ0RXpkaWhxK0JRPT0%3D--84304a9b84b7e8c2605efb980
+               8c1b92a25fcc221', 
+               port=None, port_specified=False, domain='github.com', domain_specified=False,
+               domain_initial_dot=False, path='/', path_specified=True, secure=True, expires=None,
+               discard=True, comment=None, comment_url=None, rest={'HttpOnly': None}, rfc2109=False), 
+
+        Cookie(version=0, name='has_recent_activity', value='1', port=None, port_specified=False,
+               domain='github.com', domain_specified=False, domain_initial_dot=False, path='/',
+               path_specified=True, secure=False, expires=1542829799, discard=False, comment=None,
+               comment_url=None, rest={}, rfc2109=False)
+        ]
