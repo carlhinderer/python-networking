@@ -287,3 +287,57 @@ CHAPTER 2 - HTTP
 
         >>> params
          'user=user123&password=pw123'
+
+
+
+- The 'requests' Module
+
+    - The 'requests' model has much simplified syntax for making HTTP requests.
+
+        >>> import requests
+        >>> response = requests.get('http://www.github.com')
+
+
+    - The response object has these fields:
+
+        'status_code' = the HTTP code returned by the server
+        'content'     = the content of the server response
+        'json'        = if the answer is json, this method serializes the string and returns a dictionary
+
+
+    - Here, we look at a few properties of the response:
+
+        >>> response.status_code
+        200
+
+        >>> response.reason
+        'OK'
+
+        >>> response.url
+        'http://www.github.com/'
+
+        >>> response.text
+        Returns entire response, similar to 'content'
+
+
+    - To inspect the headers in the response:
+
+        # Get all the headers in dictionary
+        >>> headers = response.headers
+
+        # Get a single header
+        >>> respones.headers['content-type']
+        'text/html; charset=utf-8'
+
+
+
+- Using Proxy Servers with requests
+
+    >>> import requests
+
+    # Configure proxy settings
+    >>> http_proxy = 'http://<ip_address>:<port>'
+    >>> proxy_dictionary = {'http': http_proxy}
+
+    # Make a request using the proxy settings
+    >>> requests.get('http://example.org', proxies=proxy_dictionary)
