@@ -159,3 +159,21 @@ CHAPTER 3 - APIs
 
         'since_id' = only retrieve tweets with ids above this value (each tweet has a integer id, with
                        later tweets having higher values than earlier tweets)
+
+
+
+- Searching Tweets
+
+    - Now, we'll add a 'search()' function to search for and retrieve tweets from a specific search
+        parameter.  We'll search for tweets that mention 'python'.
+
+        def search(auth_obj):
+            params = {'q': 'python'}
+            url = 'https://api.twitter.com/1.1/search/tweets.json'
+            response = requests.get(url, params=params, auth=auth_obj)
+            return response
+
+        if __name__ == '__main__':
+            auth_obj = init_auth('credentials.txt')
+            response = search(auth_obj)
+            print (json.dumps(response.json(),indent = 2))

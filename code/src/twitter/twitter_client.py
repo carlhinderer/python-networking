@@ -30,8 +30,20 @@ def get_mentions(since_id, auth_obj):
     response.raise_for_status()
     return json.loads(response.text)
 
+def search(auth_obj):
+    params = {'q': 'python'}
+    url = 'https://api.twitter.com/1.1/search/tweets.json'
+    response = requests.get(url, params=params, auth=auth_obj)
+    return response
+
 if __name__ == '__main__':
     auth_obj = init_auth('credentials.txt')
-    since_id = 1
-    for tweet in get_mentions(since_id, auth_obj):
-        print(tweet['text'])
+
+    # Get mentions
+    # since_id = 1
+    # for tweet in get_mentions(since_id, auth_obj):
+        # print(tweet['text'])
+
+    # Search tweets
+    response = search(auth_obj)
+    print (json.dumps(response.json(),indent = 2))
