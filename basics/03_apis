@@ -1,0 +1,47 @@
+-----------------------------------------------------------
+CHAPTER 3 - APIs
+-----------------------------------------------------------
+
+- Encoding and Decoding with the 'json' Module
+
+    - Encoding a Python list
+
+        >>> import json
+        >>> books = ['book1', 'book2', 'book3']
+
+        # Creates a string
+        >>> json.dumps(books)
+        '["book1", "book2", "book3"]'
+
+
+    - Decoding a Json string
+
+        >>> books = '["book1", "book2", "book3"]'
+
+        # Creates a Python list
+        >>> book_list = json.loads(books)
+        >>> book_list
+        ['book1', 'book2', 'book3']
+
+
+    - Loading from a Json file
+
+        >>> with open('books.json', 'rt') as file:
+                books = json.load(file)
+
+        >>> print(books)
+
+
+
+- Python dicts with json
+
+    - Python dicts can also be converted to/from json.
+
+        >>> import json
+
+        # Convert from dict to json string
+        >>> books = {'A': 'Book1', 'B': 'Book2', 'C': 'Book3'}
+        >>> books_json = json.dumps(books)
+
+        # Convert from json string to dict
+        >>> books_dict = json.loads(books_json)
