@@ -207,3 +207,23 @@ CHAPTER 3 - APIs
                 return twitter.Twitter(auth=auth)
 
         >>> twitter_client = twitter_connection('credentials.txt')
+
+
+    - In this example, we retrieve the first 10 tweets that have the '#python' hashtag.
+
+        >>> import twitter 
+ 
+        >>> def get_info_twitter(tw):
+                if tw is not None:
+                    query = tw.search.tweets(q="#python", lang="en", count="10")["statuses"]
+                    for q in query:
+                        for key,value in q.items():
+                            if(key=='text'):
+                                print(value+'\n')
+            
+        >>> try:
+                tw = twitter_connection("credentials.txt")
+                get_info_twitter(tw)
+            except Exception as e:
+                print(str(e))
+            
