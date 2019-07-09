@@ -177,3 +177,33 @@ CHAPTER 3 - APIs
             auth_obj = init_auth('credentials.txt')
             response = search(auth_obj)
             print (json.dumps(response.json(),indent = 2))
+
+
+
+- Using the 'twitter' Module
+
+    - To use the Twitter API, it is necessary to create an object based on the 'twitter.Twitter' class,
+        which will result in an object capable of interacting with the API.
+
+        >>> twitter.Twitter(auth = <object twitter.oauth.OAuth>)
+
+
+    - The argument for the 'auth' parameter must be an instantiated object of the 'twitter.oauth.OAuth'
+        class for with the access credentials must be entered.
+
+        >>> twitter.oauth.OAuth(CONSUMER_KEY, CONSUMER_SECRET, ACCESS_TOKEN, ACCESS_TOKEN_SECRET)
+
+
+    - For example, this function allows you to read the credentials from a file whose path will be
+        entered and return a 'twitter.Twitter' object with an active connection to the API.
+
+        >>> import twitter
+
+        >>> def twitter_connection(path_file):
+                lines = open(file, 'r').read().splitlines()
+                (CONSUMER_KEY, CONSUMER_SECRET, OAUTH_TOKEN, OAUTH_TOKEN_SECRET) = lines
+                auth = twitter.oauth.OAuth(ACCESS_TOKEN, ACCESS_TOKEN_SECRET, 
+                                           CONSUMER_KEY, CONSUMER_SECRET)
+                return twitter.Twitter(auth=auth)
+
+        >>> twitter_client = twitter_connection('credentials.txt')
