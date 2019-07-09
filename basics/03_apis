@@ -226,4 +226,57 @@ CHAPTER 3 - APIs
                 get_info_twitter(tw)
             except Exception as e:
                 print(str(e))
-            
+
+
+
+- Parsing XML
+
+    - There are 2 main approaches to working with XML documents.
+
+        1. You can read the entire document and create an object-based representation of it, then
+             manipulate it using an object-oriented API.  'ElementTree' is the most popular module
+             for using this approach in Python.
+
+        2. You can process the document from start to end, performing actions as specific tags are
+             encountered.  This is only needed when processing very large XML files.  'SAX' is the 
+             most popular library for using this approach in Python.
+
+
+
+- Processing XML with ElementTree
+
+    - The 'xml' package is part of the Python standard library.  The 'xml.etree.Elementree' package
+        contains various classes and functions used for handling XML documents.
+
+
+    - To create an xml file:
+
+        # Create a root element
+        >>> import xml.etree.ElementTree as ET
+        >>> root = ET.element('root')
+
+        # Print the document
+        >>> ET.dump(root)
+        <root />
+
+        # Add a child element
+        >>> book = ET.element('book')
+        >>> root.append(book)
+        >>> ET.dump(root)
+        <root><book /></root>
+
+        # Add an element with content
+        >>> name = ET.SubElement(book, 'name')
+        >>> name.text = 'Book1'
+        >>> ET.dump(root)
+        <root><book><name>Book1</name></book></root>
+
+        # Add a temporary element
+        >>> temp = ET.SubElement(root, 'temp')
+        >>> ET.dump(root)
+        <root><book><name>Book1</name></book><temp /></root>
+
+        # Remove the temporary element
+        >>> root.remove(temp)
+        >>> ET.dump(root)
+        <root><book><name>Book1</name></book></root>
