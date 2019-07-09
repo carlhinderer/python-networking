@@ -45,3 +45,39 @@ CHAPTER 3 - APIs
 
         # Convert from json string to dict
         >>> books_dict = json.loads(books_json)
+
+
+
+- Interacting with the Twitter API
+
+    - The Twitter API provides access to all the functions we may want a Twitter client to perform.  With
+        the Twitter API, we can create clients that search for recent tweets, find out what's trending,
+        look up user details, follow user's timelines, and even act on behalf of users.
+
+
+    - The Twitter module is based on the REST API at:
+
+        https://developer.twitter.com/en/docs/tweets/search/api-reference.html
+
+      We can install the module with pip:
+
+        pip install twitter
+
+
+    - Next, we need to register our application to our Twitter account.  Once we do that, we need to get
+        a 'Consumer Key' and an 'Access Secret'.
+
+
+
+- Authenticating Requests with OAuth
+
+    - Twitter uses the OAuth v2 authentication standard.  OAuth credentials comprise of 2 main elements,
+        consumer and access.  The 'consumer' element identifies our application and the 'access' element
+        proves that the account the access credentials came from authorized our app to act on its behalf.
+        Twitter lets us acquire the access credentials directly from the 'developer.twitter.com'
+        interface.
+
+
+    - The 'OAuthLib' library allows authentication to a server using the OAuth protocol.  Sites like 
+        Facebook, Twitter, LinkedIn, GitHub, and Google use this protocol.  To integrate with OAuth,
+        we'll use the Python 'requests-oauthlib' module.
