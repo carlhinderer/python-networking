@@ -1,5 +1,3 @@
-!/usr/bin/python3
-
 import requests, requests_oauthlib, sys
 
 def init_auth(file):
