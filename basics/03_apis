@@ -81,3 +81,45 @@ CHAPTER 3 - APIs
     - The 'OAuthLib' library allows authentication to a server using the OAuth protocol.  Sites like 
         Facebook, Twitter, LinkedIn, GitHub, and Google use this protocol.  To integrate with OAuth,
         we'll use the Python 'requests-oauthlib' module.
+
+
+
+- Connecting to the Twitter API
+
+    - First, we need to provide a 'credentials.txt' file, in which we specify the keys we received from
+        the Twitter app configuration.
+
+        # File: credentials.txt
+        # Fill in your access tokens
+        # Get credentials here: https://apps.twitter.com
+        # Line 1: CONSUMER_KEY
+        # Line 2: CONSUMER_SECRET
+        # Line 3: OAUTH_TOKEN
+        # Line 4: OAUTH_TOKEN_SECRET
+
+
+    - Here, we use the credentials specified in our 'credentials.txt'.
+
+        !/usr/bin/python3
+
+        import requests, requests_oauthlib, sys
+
+        def init_auth(file):
+            lines = open(file,'r').read().splitlines()
+            (CONSUMER_KEY, CONSUMER_SECRET, OAUTH_TOKEN, OAUTH_TOKEN_SECRET) = lines
+            auth_obj = requests_oauthlib.OAuth1(CONSUMER_KEY, CONSUMER_SECRET,
+                                                OAUTH_TOKEN, OAUTH_TOKEN_SECRET)
+            if verify_credentials(auth_obj):
+                print('Validated credentials OK')
+                return auth_obj
+            else:
+                print('Credentials validation failed')
+                sys.exit(1)
+        
+        def verify_credentials(auth_obj):
+            url = 'https://api.twitter.com/1.1/account/verify_credentials.json'
+            response = requests.get(url, auth=auth_obj)
+            return response.status_code == 200
+        
+        if __name__ == '__main__':
+            auth_obj = init_auth('credentials.txt')
