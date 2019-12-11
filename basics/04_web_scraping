@@ -523,9 +523,106 @@ CHAPTER 4 - WEB SCRAPING WITH BEAUTIFULSOUP AND SCRAPY
 
 - Scrapy Item Class
 
+    - The 'Item' class is used to define the output data format.  Item objects are containers
+        used to collect the extracted data and specify metadata for the fields.
+
+        # MyItem.py
+
+        import scrapy
+        from scrapy.loader.processors import TakeFirst
+
+        class MyItem(scrapy.Item):
+            # Define fields for items here
+            name = scrapy.Field(output_processor=TakeFirst(),)
+
+
+    - The next step is to describe how the information can be extracted using XPath expressions
+        so that Scrapy can differentiate it from the rest of the HTML.
+
+      Here, we start the crawling process:
+
+
+        # Set up crawler
+        >>> from scrapy.crawler import CrawlerProcess
+        >>> crawler = CrawlerProcess(settings)
+
+        # Define the spider for the crawler
+        >>> crawler.crawl(MySpider())
+
+        # Start Scrapy
+        >>> print("STARTING ENGINE")
+        >>> crawler.start()
+
+        # Printed at the end of the crawling process
+        >>> print("ENGINE STOPPED")
+
+
+    - We also need to import the necessary modules to carry out the crawling process:
+
+        from scrapy.spiders import CrawlSpider, Rule
+        from scrapy.linkextractors.lxmlhtml import LxmlLinkExtractor
+        from scrapy.selector import HtmlXPathSelector
+
+
+      Important classes include:
+
+        1. Rule
+             Allows us to establish the rules by which the crawler will be based to navigate through
+               different links.
+
+        2. LxmlLinkExtractor
+             Allows us to define a callback function and regexes to tell the crawler which links to
+               go through.  It allows us to define the navigation rules between the links we want
+               to obtain.
+
+        3. HtmlXPathSelector
+             Allows us to apply XPath expressions.
+
+
+
 - Spiders
 
+    - Spiders are classes that define the way to navigate throuth a specific site or domain and how to 
+        extract data from those pages.
+
+
+    - The cycle that follows a spider is the following:
+
+        1. First, we start generating the initial request (Requests) to navigate through the first URL
+             and we specify the 'backward' function to be called with the response (Response) downloaded
+             from that request.
+
+        2. The first request to be made is obtained by calling the 'start_request()' method, which by 
+             default generates the request for the specific URL in the 'start_urls' starting addresses
+             and the functions of 'backward' for the requests.
+
+
+
 - Creating a Spider
+
+    # spiders/MySpider.py
+
+    from scrapy.contrib.spiders import CrawlSpider, Rule
+    from scrapy.linkextractors.lxmlhtml import LxmlLinkExtractor
+    from scrapy.selector import HtmlXPathSelector
+    from scrapy.item import Item
+    
+    class MySpider(CrawlSpider):
+        name = 'example.com'
+        allowed_domains = ['example.com']
+        start_urls = ['http://www.example.com']
+        rules = (Rule(LxmlLinkExtractor(allow=())))
+    
+        def parse_item(self, response):
+            hxs = HtmlXPathSelector(response)
+            element = Item()
+            return element
+
+
+    - 'CrawlSpider' provides a mechanism that allows you to follow the links that follow a certain
+        pattern.
+
+
 
 - Pipelines Items and Export Formats
 
