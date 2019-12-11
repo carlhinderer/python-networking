@@ -1,0 +1,114 @@
+--------------------------------------------------------------------
+CHAPTER 4 - WEB SCRAPING WITH BEAUTIFULSOUP AND SCRAPY
+--------------------------------------------------------------------
+
+- Common Web Content Extraction Techniques
+
+    1. Screen Scraping
+         Allows you to obtain information by moving around the screen, registering user
+           pulsations.
+
+    2. Web Scraping
+         Obtain information of a resource (like an HTML page) and extract relevant data.
+
+    3. Report Mining
+         Obtain information from a file (HTML, RDF, CSV, ...).
+
+    4. Spiders
+         Scripts that follow specific rules to move around the website and gather information
+           by imitating user interactions.
+
+    5. Crawlers
+         Processes that automatically parse and extract content from a website and provide that
+           search content to search engine providers for building their page index.
+
+
+
+- HTML Parsers
+
+    - For parsing HTML, the recommended third-party package is lxml, an XML parser.  It's quick, 
+        flexible, and tolerant of broken HTML.
+
+        $ pip install lxml
+
+
+    - Another option is to use BeautifulSoup, which is pure Python.  It can use 'lxml' as a backend
+        library.
+
+        $ pip install BeautifulSoup4
+
+
+
+- Parsing HTML With lxml
+
+    - The 'lxml' parser is the main module for analysis of XML documents and 'libxslt'.  Its
+        main features are:
+
+        1. Support for xml and html
+        2. An API based on ElementTree
+        3. Support to selected elements using XPath expressions
+
+
+    - To install lxml:
+
+        $ pip install lxml
+
+
+    - 'lxml.etree' is a submodule of the lxml libarary that provides methods such as 'XPath()', 
+        which supports expressions with XPath selector syntax.  
+
+      In this example, we see the use of the parser to read an HTML file and extract the title
+        tag:
+
+
+        from lxml import html, etree
+
+        simple_page = open('data/simple.html').read()
+        parser = etree.HTML(simple_page)
+        result = etree.tostring(parser, pretty_print=True, method="html")
+        find_text = etree.XPath("//title/text()", smart_strings=False)
+        text = find_text(parser)[0]
+        print(text)
+
+
+
+- Example - Parsing with lxml
+
+    # Download a web page
+    >>> import requests
+    >>> response = requests.get('https://www.debian.org/releases/stable/index.en.html')
+
+    # Parse the web page into an ElementTree tree
+    >>> from lxml.etree import HTML
+    >>> root = HTML(response.content)
+
+
+    # We can use the same syntax as the standard xml library
+    >>> [e.tag for e in root]
+     ['head', 'body']
+
+    # Get the web page's title
+    >>> root.find('head').find('title').text
+     'Debian -- Debian “stretch” Release Information '
+
+
+    # More complex example
+    >>> root.find('body').findall('div')[1].find('p').text
+
+
+
+- Example - Make a DuckDuckGo Request with lxml
+
+    from lxml.html import fromstring, tostring
+    from lxml.html import parse, submit_form
+    
+    import requests
+    response = requests.get('https://duckduckgo.com')
+    form_page = fromstring(response.text)
+    form = form_page.forms[0]
+    print(tostring(form))
+    
+    page = parse('http://duckduckgo.com').getroot()
+    page.forms[0].fields['q'] = 'python'
+    result = parse(submit_form(page.forms[0])).getroot()
+    print(tostring(result))
