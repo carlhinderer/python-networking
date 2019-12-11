@@ -375,3 +375,79 @@ CHAPTER 4 - WEB SCRAPING WITH BEAUTIFULSOUP AND SCRAPY
         for r in results:
             if r is not None:
                 print(r['link'] +" "+(r['title']))
+
+
+
+- Extracting Labels Using regex
+
+    - With BeautifulSoup, we can use regex patterns to match specific tags.
+
+        # extract_emails_from_url.py
+
+        import requests
+        import re
+        from bs4 import BeautifulSoup
+        
+        url = input("Enter the URL: ")
+        response = requests.get(url)
+        html_page = response.text
+        email_pattern=re.compile(r'\b[\w.-]+?@\w+?\.\w+?\b')
+        
+        for match in re.findall(email_pattern,html_page):
+            print(match)
+
+
+
+- Handling URL Exceptions and Not Found Tags
+
+    - Here is an example of error handling for requests:
+
+        # handling_exceptions_tags.py
+        from urllib.request import urlopen
+        from urllib.error import HTTPError
+        from urllib.error import URLError
+        from bs4 import BeautifulSoup
+         
+        try: 
+            html = urlopen("https://www.packtpub.com/")
+        except HTTPError as e:
+            print(e)
+        except URLError:
+            print("Server down or incorrect domain")
+        else:
+            res = BeautifulSoup(html.read(),"html5lib")
+            if res.title is None:
+                print("Tag not found")
+            else:
+                print(res.title.text)
+
+
+
+
+
+
+- Scrapy Introduction
+
+- Scrapy Architecture
+
+- XPath Expressions
+
+- Installing Scrapy and Creating a Project
+
+- Scrapy Item Class
+
+- Spiders
+
+- Creating a Spider
+
+- Pipelines Items and Export Formats
+
+- Scrapy Settings
+
+- Executing Scrapy
+
+- EuroPython Project
+
+- ScrapingHub
+
+- Portia
