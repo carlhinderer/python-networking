@@ -423,16 +423,103 @@ CHAPTER 4 - WEB SCRAPING WITH BEAUTIFULSOUP AND SCRAPY
 
 
 
-
-
-
 - Scrapy Introduction
+
+    - Scrapy is an open source platform used to extract data from web pages used for a series
+        of applications like data mining and information processing.  It is fast and powerful,
+        easily extensible, and portable.
+
+      Scrapy includes the following tools:
+
+        1. Extracting data with CSS selectors and XPath expressions
+        2. An interactive console in iPython to extract 
+        3. Support for exporting records in JSON, CSV, XML
+        4. Support for handling foriegn statements, non-standards, broken code
+        5. Extensible, extensions can be created
+
+
 
 - Scrapy Architecture
 
+    - Scrapy allows us to recursively scan the contents of a website and apply a set of rules to
+        extract useful information.  These are its main elements:
+
+        1. Interpreter
+             Allows quick tests and creation of projects with defined structure
+
+        2. Spiders
+             Code routines that are responsible for making HTTP requests to a list of domains
+
+        3. XPath Expressions
+             Allows us to extract specific information
+
+        4. Items
+             Containers of information
+
+
+
 - XPath Expressions
 
+    - To use Scrapy, it is necessary to define rules that Scrapy will use for extracting
+        information.  These rules can be XPath expressions.  
+
+
+    - Here is an example:
+
+        # Enter the scrapy shell
+        $ scrapy shell
+
+        # Get the page title
+        >>> fetch('http://www.scrapy.org')
+        >>> response.xpath('//title/text()').extract()
+         ['Scrapy | A Fast and Powerful Scraping and Web Crawling Framework']
+
+
+
 - Installing Scrapy and Creating a Project
+
+    - Scrapy enables automated and rapid scraping of large amounts of web-based content.  It
+        was created from Twisted, so it is capable of performing thousands of queries 
+        simultaneously.  It also uses BeautifulSoup and the Python xml package to facilitate
+        searches.
+
+        # Install scrapy (depends on having lxml and OpenSSL installed)
+        $ pip install scrapy
+
+        # List all scrapy subcommands
+        $ scrapy
+
+
+    - To create a project with Scrapy:
+
+        # Create a new project
+        $ scrapy startproject helloProject
+
+
+        # Here is the directory that was created
+        helloProject/
+            scrapy.cfg              # Deploy configuration file
+            helloProject/           # Project's Python module, you'll import your code from here
+                __init__.py
+                items.py            # Project items file
+                pipelines.py        # Project pipelines file
+                settings.py         # Project settings file
+                spiders/            # A directory where you'll later put your spiders
+                    __init__.py
+
+
+    - These are the most important files:
+
+        1. items.py
+             We define the elements to extract
+
+        2. spiders
+             The heart of the project, here we define the extraction procedure
+
+        3. Pipelines.py
+             The elements to analyze what has been obtained, data validation and cleaning of HTML
+
+
 
 - Scrapy Item Class
 
