@@ -222,3 +222,65 @@ CHAPTER 4 - WEB SCRAPING WITH BEAUTIFULSOUP AND SCRAPY
         scraping = Scraping()
         scraping.scrapingImages(target)
         scraping.scrapingLinks(target)
+
+
+
+- BeautifulSoup Introduction
+
+    - BeautifulSoup specializes in searching HTML files by various criteria.  It's main 
+        features include:
+
+        1. Parses and allows the extraction of information from HTML documents
+        2. Supports multiple parsers in processing XML documents and HTML (lxml, html5lib)
+        3. Generates a tree structure with all the elements of the paired documents
+        4. Very easily allows the user to search HTML elements
+
+
+    - To install BeautifulSoup:
+
+        $ pip install BeautifulSoup4
+
+
+    - To use BeautifulSoup:
+
+        # Pass in HTML document and parser
+        >>> from bs4 import BeautifulSoup
+        >>> bs = BeautifulSoup(contents, 'lxml')
+
+
+        # Get all meta tags in a document
+        >>> meta_tags = bs.find_all('meta')
+        >>> for tag in meta_tags:
+                print(tag)
+
+
+        # Get all forms of a document
+        >>> form_tags = bs.find_all('form')
+        >>> for form in form_tags:
+                print(form)
+
+
+        # Get all links in a document
+        >>> link_tags = bs.find_all('a')
+        >>> for link in link_tags:
+                print(link)
+
+
+
+- Example - Get All Links from a Specified Web Page
+
+    # get_all_links.py
+
+    #!/usr/bin/env python3
+
+    from bs4 import BeautifulSoup
+    import requests
+    
+    url = input("Enter a website to extract the URL's from: ")
+    
+    headers = {'User-Agent': 'Mozilla/5.0'}
+    response = requests.get("http://" +url, headers = headers)
+    data = response.text
+    soup = BeautifulSoup(data, 'lxml')
+    for link in soup.find_all('a'):
+        print(link.get('href'))
