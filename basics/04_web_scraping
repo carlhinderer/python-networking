@@ -284,3 +284,94 @@ CHAPTER 4 - WEB SCRAPING WITH BEAUTIFULSOUP AND SCRAPY
     soup = BeautifulSoup(data, 'lxml')
     for link in soup.find_all('a'):
         print(link.get('href'))
+
+
+
+- Example - Download All Images from a Web Page
+
+    # download_images.py
+
+    #!/usr/bin/env python3
+
+    import requests 
+    from bs4 import BeautifulSoup 
+    import urllib.parse
+    import sys
+    import os
+    
+    url = 'http://www.freeimages.co.uk/galleries/transtech/informationtechnology/index.htm'
+    response = requests.get(url) 
+    parse = BeautifulSoup(response.text, 'lxml')
+    
+    # Get all image tags
+    image_tags = parse.find_all('img')
+    
+    # Get urls to the images
+    images = [url.get('src') for url in image_tags]
+    
+    # If no images found in the page
+    if not images:
+        sys.exit("Found No Images")
+    
+    # Convert relative urls to absolute urls if any
+    images = [urllib.parse.urljoin(response.url, url) for url in images] 
+    print('Found %s images' % len(images))
+
+    # Create download_images folder if not exists  
+    file_path = "download_images"
+    directory = os.path.dirname(file_path)
+    
+    if not os.path.exists(directory):
+        try:
+            os.makedirs(file_path)
+            print ("Creation of the directory %s OK" % file_path)
+        except OSError:
+            print ("Creation of the directory %s failed" % file_path)
+    else:
+        print ("download_images directory exists")
+     
+    # Download images to downloaded folder
+    for url in images:response = requests.get(url)
+        file = open('download_images/%s' % url.split('/')[-1], 'wb')
+        file.write(response.content)
+        file.close()
+        print('Downloaded %s' % url)
+
+
+
+- Example - Get All Links from Hacker News
+
+    # extract_links_hacker_news.py
+
+    #!/usr/bin/env python3
+    import requests
+    from bs4 import BeautifulSoup
+    
+    def get_front_page():
+        target = "https://news.ycombinator.com"
+        frontpage = requests.get(target)
+        if not frontpage.ok:
+            raise RuntimeError("Can't access hacker news, you should go outside")
+        news_soup = BeautifulSoup(frontpage.text,"lxml")
+        return news_soup
+    
+    def find_interesting_links(soup):
+        items = soup.findAll('td', {'align': 'right', 'class': 'title'}) 
+        links = []
+        for i in items:
+            try:
+                siblings = list(i.next_siblings)
+                post_id = siblings[1].find('a')['id']
+                link = siblings[2].find('a')['href']
+                title = siblings[2].text
+                links.append({'link': link, 'title': title,'post_id':post_id})
+            except Exception as e:
+                pass
+        return links
+    
+    if __name__ == '__main__':
+        soup = get_front_page()
+        results = find_interesting_links(soup)
+        for r in results:
+            if r is not None:
+                print(r['link'] +" "+(r['title']))
