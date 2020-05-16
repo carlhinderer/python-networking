@@ -280,3 +280,40 @@ CHAPTER 3 - APIs
         >>> root.remove(temp)
         >>> ET.dump(root)
         <root><book><name>Book1</name></book></root>
+
+
+    - To pretty-print an XML document:
+
+        >>> import xml.dom.minidom as minidom
+        >>> print(minidom.parseString(ET.tostring(root)).toprettyxml())
+
+
+
+- Reading an XML File with ElementTree
+
+    - Here, we'll read an XML file 'books.xml':
+
+        # Read the file
+        >>> import xml.etree.ElementTree as ET
+        >>> books = ET.parse('books.xml')
+
+        # Get the document's root element
+        >>> root = books.getroot()
+        >>> print(root)
+        >>> print(root.tag)
+
+        # Access children of the root element
+        >>> for child in root:
+                print(child.tag, child.attrib)
+                for element in child:
+                    print(element.tag, element.text)
+
+        # Access a specific attribute
+        >>> for child in root:
+                print(child.tag, child.attrib['id'], child.attrib['name'])
+
+
+
+- The Amaxon S3 API
+
+    - The Amazon S3 API is a REST API that provides access to Amazon's S3 data storage service.  
