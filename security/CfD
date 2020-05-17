@@ -112,8 +112,24 @@
 
 - Poisoned Web Service Attacks
 
+    - Example - Cross Site Scripting
+
+        1. Attacker adds a comment to an insecure website, with a command embedded in the
+             comment.  
+
+        2. Every time someone loads the web page, the command is executed while they are
+             logged into the site.
+
 
 - Network Infrastructure Poisoning
+
+    - Example - DNS Poisoning
+
+        1. An attacker changes the DNS records of a website to point to a fake copy of the
+             application.
+
+        2. When users navigate to the site, they are automatically routed to the fake 
+             application.
 
 
 - Malvertising
@@ -134,3 +150,52 @@
 
 
 
+
+--------------------------------------------------------------
+|    Chapter 3 - Bad Guys                                    |
+--------------------------------------------------------------
+
+- Bad Guys and Good Guys are Relative Terms
+
+
+- Bad Guys
+
+    1. Script Kiddies
+    2. Kids who are Not Kiddies
+    3. Nations and States
+    4. Corporate Spies
+    5. Criminals
+    6. Hacktivists
+
+
+- Cyberattackers and Colored Hats
+
+    1. Black Hat Hackers
+    2. White Hat Hackers
+    3. Grey Hat Hackers
+    4. Green Hat Hackers (Novices)
+    5. Blue Hat Hackers (Paid to test for exploits)
+
+
+- Monetizing Cyberattacks
+
+    1. Direct Financial Fraud
+    2. Indirect Financial Fraud
+         - Illegal Trading of Securities
+         - Stealing Credit Card Information
+         - Stealing Goods
+         - Stealing Data
+    3. Ransomware
+    4. Cryptominers
+
+
+- Dealing With Nonmalicious Threats
+
+    1. Human Error
+    2. External Disasters
+
+
+- Defending Against These Attackers
+
+
+- Addressing Risks Through Various Methods
