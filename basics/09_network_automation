@@ -1,0 +1,25 @@
+-----------------------------------------------------------
+CHAPTER 9 - NETWORK AUTOMATION WITH PYTHON & ANSIBLE
+-----------------------------------------------------------
+
+- Ansible Introduction
+
+- Installing Ansible
+
+- Configuring Ansible
+
+- Using Ansible
+
+- Ansible's Architecture
+
+- Ansible's Inventory File
+
+- Ansible Tasks
+
+- Ad-hoc Commands
+
+- Using Playbooks
+
+- Introduction to Ansible Modules
+
+- Implementing Ansible Modules with Python

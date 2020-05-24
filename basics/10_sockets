@@ -1,0 +1,45 @@
+-----------------------------------------------------------
+CHAPTER 10 - PROGRAMMING WITH SOCKETS
+-----------------------------------------------------------
+
+- Introduction to Sockets
+
+- Socket Types
+
+- Getting Information About Ports, Protocols, and Domains
+
+- Creating a TCP Client
+
+- Banner Grabbing with the socket Module
+
+- Port Scanning with sockets
+
+- Inspecting the Client and Server Communication
+
+- Introduction to the TCP and UDP Protocols
+
+- Starting Network Programming with Python
+
+- TCP Sockets
+
+- Capturing Packets in a loopback Interface
+
+- Inspecting the Client and Server Interaction
+
+- Code Limitations
+
+- Creating a Simple UDP Client and UDP Server
+
+- Implemeting an IPv6 Server
+
+- Implementing an IPv6 Client
+
+- Executing Client and Server
+
+- Introduction to Non-Blocking I/O
+
+- The Client-Server Model with Multiple Connections
+
+- Implementing the SSL Client
+
+- Inspecting Standard SSL Client and Server Communication
