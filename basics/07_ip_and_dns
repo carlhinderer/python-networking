@@ -1,0 +1,31 @@
+-----------------------------------------------------------
+CHAPTER 7 - WORKING WITH IP & DNS
+-----------------------------------------------------------
+
+- Resolving the IP Address with the socket Package
+
+- Validating the IP Address with the socket Package
+
+- Gathering Information with the netifaces Package
+
+- The Python ipaddress Module
+
+- Manipulating Ip Addresses
+
+- Subnetting in Python
+
+- Network Interface Objects
+
+- Planning IP Addresses for your LAN
+
+- Working with dnspython
+
+- Inspecting the DNS Client and Server Configuration
+
+- Introduction to Geolocation
+
+- Introduction to pygeoip
+
+- Introduction to python-geoip
+
+- The MaxMind Database in Python

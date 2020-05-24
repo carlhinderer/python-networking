@@ -1,0 +1,39 @@
+-----------------------------------------------------------
+CHAPTER 8 - IMPLEMENTING IPv6 & ADDRESS MANIPULATION
+-----------------------------------------------------------
+
+- The IPv6 Protocol
+
+- IPv6 Addresses
+
+- Representation of IPv6 Addresses
+
+- Reserved IPv6 Addresses
+
+- First Steps with IPv6 - link-local
+
+- Working with Sockets
+
+- The Socket Server
+
+- The Socket Client
+
+- Executing Client and Server
+
+- Introduction to netifaces
+
+- Other Packages for Getting Interfaces
+
+- Using netaddr with IPv6
+
+- The Python ipaddress Module
+
+- IP Network Objects
+
+- Subnetting in Python with IPv6
+
+- Network Interface Objects
+
+- The IP Address Objects
+
+- Planning IP Addresses for your LAN
