@@ -1,0 +1,27 @@
+-----------------------------------------------------------
+CHAPTER 5 - ENGAGING WITH EMAIL
+-----------------------------------------------------------
+
+- Email Protocols
+
+- The SMTP Protocol
+
+- Working with smtplib
+
+- Authentication with TLS
+
+- Using an External SMTP Service
+
+- The POP3 Protocol
+
+- Introduction to poplib
+
+- Retrieving Emails with SSL
+
+- Establishing a Connection with Gmail for Reading Emails
+
+- The IMAP Protocol
+
+- Retrieving Emails with imaplib
+
+- Retrieving Emails with imapclient

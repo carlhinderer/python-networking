@@ -1,0 +1,51 @@
+-----------------------------------------------------------
+CHAPTER 6 - INTERACTING WITH REMOTE SYSTEMS
+-----------------------------------------------------------
+
+- SSH Introduction
+
+- Using SSH To Encrypt Sessions
+
+- How the SSH Protocol Works
+
+- SSH Service Features
+
+- Configuring the SSH Protocol to Make it More Secure
+
+- Installing paramiko
+
+- Establishing an SSH Connection with paramiko
+
+- Running Commands with paramiko
+
+- Running an Interactive Shell with paramiko
+
+- SFTP with paramiko
+
+- Paramiko Alternatives
+
+- Understanding FTP
+
+- Introduction to ftplib
+
+- Other ftplib Functions
+
+- Inspecting FTP Packets with Wireshark
+
+- Understanding SNMP
+
+- Understanding MIB
+
+- Introduction to pysnmp
+
+- Polling Information from the SNMP Agent
+
+- The LDAP Protocol
+
+- LDAP Terminology
+
+- Introduction to python-ldap
+
+- The LDAP FreeIPA Server
+
+- Working with LDAP3
