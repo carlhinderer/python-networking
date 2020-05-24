@@ -1,0 +1,39 @@
+-----------------------------------------------------------
+CHAPTER 12 - DESIGING APPLICATIONS ON THE WEB
+-----------------------------------------------------------
+
+- Introducing WSGI
+
+- Creating a WSGI Application
+
+- Web Frameworks
+
+- The MVC Pattern
+
+- Dynamic Web Pages
+
+- Processing Dynamic Pages
+
+- Accessing a Database
+
+- Django Introduction
+
+- Creating a Django Application
+
+- Introduction to Flask
+
+- Routing in Flask
+
+- Jinja2 Templating
+
+- POST Parameters with Flask
+
+- Other Templating Engines
+
+- Flask Extensions
+
+- Introducing SQLAlchemy
+
+- Creating a Session and Queries
+
+- Using Flask with SQLAlchemy
