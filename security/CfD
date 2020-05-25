@@ -234,6 +234,22 @@
     8. Recovering
     9. Improving
 
+    - NAT allows computers on a network to use IP addresses that are invalid for use on
+        the internet and can be used only on private networks.
+
+    - Tips for securing routers:
+
+        1. Install updates
+        2. Change the default admin pw
+        3. Change the default SSID
+        4. Use at least WPA2 for encryption
+        5. Create a strong password for connecting to the network
+        6. Disable old WiFi protocols (ie 802.11b/g)
+        7. Enable MAC address filtering
+        8. Disable remote access
+        9. (Maybe) turn off DHCP and assign static addresses
+        10. Create a Guest network separate from your private network
+
 
 - Evaluating Your Current Security Measures
 
@@ -254,3 +270,56 @@
 
 
 - Safely Using Smart Devices
+
+
+
+
+
+--------------------------------------------------------------
+|    Chapter 5 - Enhancing Physical Security                 |
+--------------------------------------------------------------
+
+- Why Physical Security Matters
+
+
+- Taking Inventory
+
+    1. Stationary Devices
+    2. Mobile Devices
+
+
+- Locating Your Vulnerable Data
+
+
+- Creating and Executing a Physical Security Plan
+
+    - CPTD (Crime Prevention Through Design)
+
+        1. Access Control
+             Fences, monitored entrances and exits, landscaping
+
+        2. Surveillance
+             Cameras, guards, motion-sensitive lights
+
+        3. Marking
+             Uniforms, badges, clearly mark areas where unauthorized persons are not allowed
+
+
+- Implementing Physical Security
+
+        1. Locks
+        2. Video cameras
+        3. Security guards
+        4. Alarms
+        5. Perimeter security
+        6. Lighting
+        7. Environmental risk mitigation
+        8. Backup power supplies
+        9. Contingencies during renovation or construction
+        10. Risks from backups
+
+
+- Security for Mobile Devices
+
+
+- Insiders Pose the Greatest Risk
