@@ -323,3 +323,81 @@
 
 
 - Insiders Pose the Greatest Risk
+
+
+
+
+
+--------------------------------------------------------------
+|    Chapter 6 - Securing Your Accounts                      |
+--------------------------------------------------------------
+
+- Realizing You're a Target
+
+
+- Securing Your External Accounts
+
+
+- Securing Data Associated with User Accounts
+
+    1. Conduct Business with Reputable Parties
+    2. Use Official Apps and Websites
+    3. Don't Install Software From Untrusted Parties
+    4. Don't Root Your Phone
+    5. Don't Provide Unnecessary Sensitive Information
+    6. Use Payment Services that Eliminate Sharing Credit Card Numbers
+    7. Use One-Time, Virtual Credit Card Numbers When Appropriate
+    8. Monitor Your Accounts
+    9. Report Suspicious Activity ASAP
+    10. Employ a Proper Password Strategy
+    11. Utilize Multifactor Authentication
+    12. Log Out When Finished
+    13. Use Your Own Computer/Phone
+    14. Lock Your Computer
+    15. Use a Separate, Dedicated Computer for Sensitive Tasks
+    16. Use a Separate, Dedicated Browser for Sensitive Tasks
+    17. Secure Your Access Devices
+    18. Keep Devices Up to Date
+    19. Don't Perform Sensitive Tasks Over Public WiFi
+    20. Never Use Public WiFi in High-Risk Places (ie hacker conferences or certain countries)
+    21. Access Your Accounts Only When in a Safe Location
+    22. Set Appropriate Limits (ie how much can be transferred from bank accounts)
+    23. Use Alerts
+    24. Periodically Check Access Device Lists
+    25. Check Last Login Info
+    26. Respond Appropriately to Any Fraud Alerts
+    27. Never Send Sensitive Information Over Unencrypted Connection
+    28. Beware of Social Engineering Attacks
+    29. Establish Voice Login Passwords
+    30. Protect Your Cellphone Number
+    31. Don't Click on Links in Emails or Texts
+    32. Don't Overshare on Social Media
+    33. Pay Attention to Privacy Policies
+
+
+- Multifactor Authentication
+
+    - Multifactor authentication requrires 2 or more methods:
+
+        1. Something the user knows (ie a password)
+        2. Something the user is (ie a fingerprint)
+        3. Something the user has (ie a hardware token)
+
+    - Types of multifactor authentication include:
+
+          A. Biometrics
+          B. Digital Certificates
+          C. One-time Passwords
+          D. Hardware Tokens
+          E. Knowledge-Based Authentication
+
+
+- Securing Data with Parties You've Interacted With
+
+
+- Securing Data at Parties You Haven't Interacted With
+
+
+
+
+
