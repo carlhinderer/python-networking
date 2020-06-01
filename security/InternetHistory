@@ -154,6 +154,63 @@
 |  PHASE 5 - THE WEB MAKES IT EASY - EARLY 1990s                      |
 -----------------------------------------------------------------------
 
+- CERN - High-Energy Physics
+
+    - Brilliant physicists from all over the world
+    - Work on long, detailed projects (15-20 years)
+    - Have a lot of time to think
+
+
+- The Beginning of the Web - CERN
+
+    - The internet was infrastructure, the web gave it a UI and URLs
+    - The web was invented by Tim Berners-Lee and Robert Caillau (1990)
+    - CERN developed browsers and servers with a goal of worldwide hyperlinked articles
+
+
+- The First Web Server in America
+
+    - The first web server in America was at the Stanford Linear Accellerator (SLAC)
+    - It was a research database of 300,000 research papers
+    - Dr Paul Kunz
+    - December 12, 1991
+
+
+- Gopher is Dominant in 1993
+
+    - IETF (Internet Engineering Taks Force) Meeting
+        - March 29 - April 2, 1993 in Columbus, OH (638 attendees)
+        - Gopher BOF (200 attendees)
+        - WWW BOF (15 attendees including Tim Berners-Lee)
+
+    - DVD is also invented this year
+
+
+- Steve Jobs and the WWW?
+
+    - For several years, the primary web browser and web server were NeXT applications
+    - Apple computers provided far superior graphics that allowed the development of Mosaic
+
+
+- The Explosive Growth of the Web
+
+    - The web was invented in the early 1990s
+    - Growing in academia (1993)
+    - Growing everywhere (1994-95)
+    - Cable modems to the home started in the mid 90s
+
+
+- Mosaic - Netscape - Mozilla - Firefox
+
+    - Mosaic was the first 'consumer' web browser, developed at NCSA
+        (by Marc Andreesen and Eric Bina)
+
+    - Mosaic was open source, and worked on Mac/Windows/Unix
+    - NCSA created the httpd web server, which became Apache
+
+    - While most of the NCSA programmers formed Netscape and made fortunes, NCSA released their
+        browser for free and focused on building standards to keep the web open
+
 
 
 
@@ -162,6 +219,81 @@
 |  PHASE 6 - THE UBIQUITY OF THE INTERNET - 1996 TO PRESENT           |
 -----------------------------------------------------------------------
 
-- Explosive Growth of the Internet and Web
+- 1994: The Year of the Web
 
-- Commercialization of the Web
+    - Netscape founded (April 1994)
+    - WWW Conference at CERN (May 1994)
+    - WWW Conference in Chicago (October 1994)
+    - Tim Berners-Lee founds the W3C at MIT (October 1994)
+    - Windows 95 Beta 2 (November 1994)
+
+
+- Netscape, JavaScript, and Firefox
+
+    - As Microsoft worked to suffocate Netscape:
+
+         - JavaScript was invented to compete with Visual Basic (1995)
+         - Netscape slowly leaked out into open source as Mozilla (late 90s)
+
+    - Firefox was released in November 2004
+    - Firefox's search box gave the small Mozilla foundation millions in revenue
+
+
+- Brendan Eich and JavaScript
+
+    - Written as an alternative to Java applets, was meant to be for people who didn't know
+        how to use a compiler.  Was meant to compete with Visual Basic.
+
+    - Since it was rushed, it was made to be malleable, which allowed other people to build
+        toolkits on top of it.
+
+    - Included things like first-class functions and prototypal inheritance.  It was rushed, so
+        it didn't include advanced features like OOP.
+
+    - In the mid 90s, it got a bad reputation, since it was used for things like annoying pop-ups.
+        Firefox eventually led things like automatically supressing them.  This eventually led
+        to a resurgence in JavaScript, which led to Web 2.0's rich clients.
+
+    - Google released the V8 engine in 2008.
+
+
+- Did Microsoft Save the World-Wide Web?
+
+    - Netscape wanted to make the web browser, web server, and web protocols proprietary
+        and owned by them
+
+    - The web browser would be $50-$100 and sold separately
+    - This threatened to make the desktop OS irrelevant
+
+
+- World-Wide-Web Consortium (W3C)
+
+    - The W3C was formed in October 1994
+    - Led by Tim Berners-Lee, who moved from CERN to MIT
+    - Goal was to develop standards to avoid proprietary balkanization of the web
+    - Many large companies (IBM, Microsoft, etc.) joined quickly
+
+
+- When You Can Assume the Web
+
+    - Larry Smarr wanted to make supercomputers available to physicists
+    - UM sneaked in 1.54Mb/sec instead of 56kb/sec backbone for their NSFNet proposal
+    - Tim Berners-Less and Robert Cailliau were building a system for network hosted documentation
+    - Paul Kunz was trying to make his article database easier to use
+    - Joseph Hardin wanted to make supercomputers more user friendly
+    - Mitchell Baker - Just wanted us to have a free and open source browse
+
+
+- The Web Land Rush
+
+    - In the late 90s, fortunes were made by simply being first in a market
+    - Everything was novel when it was re-invented on the web
+    - New brands were quickly established and became dominant
+
+
+- The Modern Internet
+
+    - In the late 90s, a ton of fiber optic was installed in the USA
+    - Hish speed and long distance were cheap and common
+    - Many national backbone networks emerged - commercial, government, academic, etc.
+    - These networks swap data at 'peering points' - after about 1999, this was all seamless
