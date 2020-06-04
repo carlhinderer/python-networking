@@ -1,0 +1,142 @@
+-----------------------------------------------------------------------
+|  LAYER 1 - THE LINK LAYER                                           |
+-----------------------------------------------------------------------
+
+- From Store and Forward to Routers
+
+    - In order to keep costs low and connections geographically short, data will be
+        forwarded through several routers.
+
+    - Getting across the country usually takes about 10 hops.
+
+    - Network designers continually add and remove links to 'tune' their networks.
+
+
+- Layered Network Model
+
+    - A layered approach allows the problem of designing networks to be broken up into parts.
+
+    - This is known as the TCP/IP protocol suite.  The 7-layer OSI model was also used.
+
+        Application Layer    [Web, Email, File Transfer]
+        Transport Layer      [Reliable Connections]
+        Internetwork Layer   [Simple, Unreliable]
+        Link Layer           [Ethernet, Wifi]
+
+
+- Internet Standards
+
+    - The standards for all of the Internet protocols are developed by the IETF
+    - Standards are called RFCs (Requests for Comments)
+
+
+- Layered Architecture
+
+    - The Physical and Internet layers are like trucks and trains - they haul stuff to the
+        correct loading docks, and it takes multiple steps.
+
+    - The Transport layer checks to see if the trucks made it and send the stuff again if
+        necessary.
+
+
+                          Stack Connections
+        ---------------------------------------------------------
+
+            Application                       Application
+                 |                             ^
+                 v                             |
+             Transport                        Transport
+                 |                             ^
+                 v                             |
+              Internet   Internet Internet    Internet
+                 |         ^   |    ^  |       ^
+                 v         |   v    |  v       |
+                Link        Link   Link       Link
+                 |         ^   |    ^  |       ^
+                 |         |   v    |  v       |
+                   Ethernet    Fiber    Ethernet
+
+
+
+- The Link Layer (aka The Physical Layer)
+
+    - As your data crosses the country, it may use a different physical medium for each hop.
+    - The medium could be Wire, Wireless, Fiber Optic, etc.
+    - The link is one 'hop' - Is it up or down?  Is it connected?
+    - Has a very narrow focus, no view of the whole internet
+    - Just gets data across the wire from one computer to another
+
+
+- Problems Solved by the Link Layer
+
+    - How does the data get pushed onto a link?
+    - How is the link shared?
+
+    - Common Link Technologies
+        - Ethernet
+        - WiFi
+        - Cable Modem
+        - DSL
+        - Satellite
+        - Optical
+
+
+- Link Layer Addresses
+
+    - Many physical layer devices have addresses built into them by the manufacturer
+        (ie Ethernet and WiFi)
+
+    - Physical addresses allow systems to identify themselves on the ends of a single link
+        (in case they are shared, for instance on a hub)
+
+    - Physical addresses go no further than one link
+
+    - Sometimes links like WiFi and wired Ethernet are shared with multiple computers
+
+
+- Sharing Nicely - Avoiding Chaos
+
+    - CSMA/CD = Carrier Sense Multiple Access with Collision Detection
+
+    - To avoid garbled messages, systems must observer "rules" (protocols)
+
+    - Ethernet rules are simple
+
+        1. Wait for silence
+        2. Begin transmitting data
+        3. Listen for your own data
+        4. If you cannot hear your own data clearly, assume a collision, wait and try again
+        5. Each system waits a different time to avoid "too much politeness"
+
+
+- Ethernet
+
+    - Invented by Robert Metcalf at Xerox PARC (1973)
+    - The first Local-Area-Network
+    - Connected PCs to laser printer (the first laser printer)
+    - Inspired by an earlier wireless network called 'Aloha' at University of Hawaii
+    - Computers connected to a single coaxial cable using vampire taps
+
+
+
+
+
+-----------------------------------------------------------------------
+|  LAYER 2 - THE INTERNET PROTOCOL                                    |
+-----------------------------------------------------------------------
+
+
+
+
+
+-----------------------------------------------------------------------
+|  LAYER 3 - TCP                                                      |
+-----------------------------------------------------------------------
+
+
+
+
+
+-----------------------------------------------------------------------
+|  LAYER 4 - THE APPLICATION LAYER                                    |
+-----------------------------------------------------------------------
