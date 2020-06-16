@@ -206,7 +206,85 @@
         your home network
 
 
+- Peering into the Internet
 
+    - Most systems have a command that will reveal the route taken across the internet 
+        (traceroute on Mac and tracert on Windows)
+
+        $ traceroute www.stanford.edu
+
+    - Each IP packet has a field called “Time to Live” - TTL
+
+    - The TTL is used to deal with loops in the network - normally if routers got confused 
+        and ended up with a loop - the network would clog up rapidly.
+
+
+- How Traceroute Works
+
+    - Normal packets are sent with a Time to Live (TTL) of 255 hops
+
+    - Trace route sends a packet with TTL=1, TTL=2, ...
+
+    - So each packet gets part-way there and then gets dropped and traceroute gets a 
+        notification of where the drop happens
+
+    - This builds a map of the nodes that a packet visits when crossing the Internet.
+
+
+- The Perfect is the Enemy of the Good
+
+    - IP Does: Best effort to get data across bunch of hops from one network to another 
+        network
+
+    - IP Does Not: Guarantee delivery - if things go bad - the data can vanish
+
+    - Best effort to keep track of the good and bad paths for traffic - tries to pick better 
+        paths when possible
+
+    - This makes it fast and scalable to very large networks - and ultimately “reliable” 
+        because it does not try to do too much
+
+
+- Vint Cerf
+
+    - Instrumental in the design and development of the ARPANET
+
+    - Vint was a graduate student as the notions of packet-switching were emerging across 
+        academia
+
+
+- Domain Name System
+
+    - Numeric addresses like 141.211.63.45 are great for Internet routers but lousy for 
+        people
+
+    - Each campus ends up with a lot of networks (141.211.*.*, 65.43.21.*)
+
+    - Sometimes (rarely) the IP address numbers get reorganized
+
+    - When servers physically move they need new IP addresses
+
+
+- DNS: Internet Address Book
+
+    - The Domain Name System is a big fast distributed database of Internet names to 
+        Internet “phone numbers”
+
+    - IP Addresses reflect technical “geography”
+        141.211.63.44 - read left to right like a phone number
+
+    - Domain names reflect organizational structure
+        www.si.umich.edu - read right to left like postal address
+        2455 North Quad, Ann Arbor, MI, USA, Earth
+
+
+- Domain Name Space
+
+    - / root
+        > .org
+        > .edu
+        > .com
+        > .nl
 
 
 
