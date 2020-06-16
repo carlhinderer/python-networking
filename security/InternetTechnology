@@ -125,6 +125,89 @@
 |  LAYER 2 - THE INTERNET PROTOCOL                                    |
 -----------------------------------------------------------------------
 
+- Internet Protocol Layer
+
+    - Goal: Gets your data from this computer to other computer halfway around the
+        world.  
+
+    - Each router knows about nearby routers.
+
+    - IP is best effort.  It's OK to drop data if things go bad.
+
+
+- IP Addresses
+
+    - The IP address is the worldwide number which is associated with one particular 
+        workstation or server
+
+    - Every system which will send packets directly out across the Internet must have 
+        a unique IP address
+
+    - IP addresses are based on where station is connected
+
+    - IP addresses are not controlled by a single organization - address ranges are 
+        assigned
+
+    - They are like phone numbers – they get reorganized once in a great while
+
+
+- IP Address Format
+
+    - Four numbers with dots - each number 1-255 (32 bits)
+
+    - Kind of like phone numbers with an “area code”
+
+    - The prefix of the address is “which network”
+
+    - While the data is traversing the Internet - all that matters is the network 
+        number
+
+        141.211.144.188
+        141.211.*.*
+
+
+- Router Tables
+
+    - No single router knows the whole network, just which way to send data to get it
+        'closer'.
+
+    - Router tables are lists of where to send packets, based on:
+        - destination network address
+        - bandwidth on adjacent links
+        - traffic on adjacent links
+        - state of neighbor nodes (up or not)
+
+
+- IP is Simple
+
+    - Local network connects to 100s of servers
+    - Must support thousands of network connections, billions of bytes of data per second
+    - Thousands of user systems on each segment
+
+
+- DHCP
+
+    - The Dynamic Host Configuration Protocol
+
+    - When a host joins the network, it asks for the router
+
+    - Router returns an IP address that can be used for communications
+
+
+- Non-Routable Addresses
+
+    - A typical home router does NAT (Network Address Translation)
+
+    - Your ISP gives your home router a real global routable address
+
+    - Your router gives out local addresses in a special range (192.168.*.*)
+
+    - The router maps remote addresses for each connection you make from within 
+        your home network
+
+
+
+
 
 
 
