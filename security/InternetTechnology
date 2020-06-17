@@ -364,3 +364,105 @@
 -----------------------------------------------------------------------
 |  LAYER 4 - THE APPLICATION LAYER                                    |
 -----------------------------------------------------------------------
+
+- Quick Review
+
+    - Link layer:  gets the data onto the link, and manages collisions on a single hop
+
+    - Internet layer: moves the data over one hop, trying to get it “closer” to its destination
+
+    - Transport layer: Assumes that the internet layer may lose data, so request retransmission 
+        when needed—provides a nice reliable pipe from source to destination
+
+
+- Application Protocol
+
+    - Since TCP gives us a reliable pipe, what to we want to do with the pipe?  What problem do 
+        we want to solve?
+
+        - Mail
+        - World Wide Web
+        - Stream kitty videos
+
+
+- Two Questions for the Application Layer
+
+    1. Which application gets the data?
+         - Ports
+
+    2. What are the rules for talking with that application?
+         - Protocols
+
+
+- Ports
+
+    - Like extensions in a phone number
+
+    - The IP address network number (the area code) gets to the LAN
+
+    - The IP address host number (the telephone number) gets you to the destination machine
+
+    - The port (the extension) gets you to a specific application
+
+
+- Common TCP Ports
+
+    - Common TCP Ports
+
+        - Telnet (23) - Login
+        - SSH (22) - Secure Login
+
+        - HTTP (80)
+        - HTTPS (443) - Secure
+
+        - SMTP (25) (Mail)
+        - IMAP (143/220/993) - Mail Retrieval
+        - POP (109/110) - Mail Retrieval
+
+        - DNS (53) - Domain Name
+        - FTP (21) - File Transfer
+
+
+- HTTP - Hypertext Transport Protocol
+
+    - The dominant Application Layer Protocol on the Internet
+
+    - Invented for the Web - to Retrieve HTML,  Images, Documents etc
+
+    - Extended to be data in addition to documents - RSS, Web Services, etc..
+
+    - Basic Concept - Make a Connection - Request a document - Retrieve the Document - 
+        Close the Connection
+
+
+- Internet Standards
+
+    - The standards for all of the Internet protocols (inner workings) are developed by an 
+        organization
+
+    - Internet Engineering Task Force (IETF)
+        www.ietf.org
+
+    - Standards are called “RFCs” - “Request for Comments”
+
+
+- The Internet: An Amazing Design
+
+    - Hundreds of millions of computers
+    - Thousands of routers inside the Internet
+    - Hundreds of millions of simultaneous connections
+    - Trillions of bytes of data moved per second around the world
+    - And it works
+
+
+- The Internet
+
+    - It is said that “The Internet is the largest single engineering effort ever created by 
+        mankind”
+
+    - It was created to work in an organic way - to repair itself and automatically adjust 
+        when parts fail
+
+    - No one part of the Internet knows all of the Internet (like life)
+
+    - It is never 100% up - but it seems up all the time
