@@ -213,7 +213,7 @@
 
         $ traceroute www.stanford.edu
 
-    - Each IP packet has a field called “Time to Live” - TTL
+    - Each IP packet has a field called “Time to Live”, TTL, that gets decremented on each hop
 
     - The TTL is used to deal with loops in the network - normally if routers got confused 
         and ended up with a loop - the network would clog up rapidly.
@@ -293,6 +293,69 @@
 -----------------------------------------------------------------------
 |  LAYER 3 - TCP                                                      |
 -----------------------------------------------------------------------
+
+- Review: The Magic of IP
+
+    - What it does - Tries to get one packet across a 5-20 of hops from one network 
+        to another network
+
+    - Keeps track of the good and bad paths for traffic - tries to pick better paths 
+        when possible
+
+    - But no guarantee of delivery - if things go bad - the data vanishes
+
+    - This makes it fast and scalable - and ultimately “reliable” because it does not 
+        try to do too "everything"
+
+
+- Internet Protocol
+
+    - So many links/hops
+
+    - So many routes
+
+    - Things can change dynamically and IP has to react (ie links up or down)
+
+    - IP can drop packets
+
+
+- TCP (Transmission Protocol)
+
+    - Built on top of IP
+
+    - Assumes IP might lose some data
+
+    - In case data gets lost - we keep a copy of the data we send until we get an 
+        acknowledgement
+
+    - If it takes “too long” - just send it again
+
+    - Billions of computers connected to the internet; 100 thousands of routers. Hundreds 
+        of billions bytes of data enroute at any moment.Storage  of enroute data done at 
+        the edges only!
+
+    - The responsibility of the transport layer is to present a reliable end-to-end pipe 
+        to the application
+
+    - Data either arrives in the proper order or the connection is closed
+
+    - TCP keeps buffers in the sending and destination system to keep data which has arrived 
+        out of order or to retransmit if necessary
+
+    - TCP provides individual connections between applications
+
+
+- One Scary Problem
+
+    - Many people (especially companies like AT&T and DEC) believed the internet would collapse,
+        and that a network designed by a bunch of academics was likely to fail
+
+    - In 1987, local campuses with 10 MBit networks were connected using 56Kbit leased lines,
+        and things started to fall apart.
+
+    - Van Jacobson wrote several patches which drastically reduced congestion on the networks.
+
+    - Today, his 'slow start' algorithm is know as the TCP Congestion Avoidance Algorithm.
 
 
 
