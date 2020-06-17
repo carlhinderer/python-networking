@@ -283,6 +283,123 @@
 |  PART 4 - PUBLIC/PRIVATE KEYS & SECURE SOCKETS                      |
 -----------------------------------------------------------------------
 
+- Public Key Encryption
+
+    - Proposed by Whitfield Diffie and Martin Hellman in 1976
+
+    - Public-key cryptosystems rely on two keys which are mathematically related to one 
+        another.  Also called asymmetric-key cryptosystem.
+
+    - One key is called the public key and is to be openly revealed to all interested 
+        parties.
+
+    - The second key is called the private key and must be kept secret.
+
+
+- Public Key
+
+    - A message encrypted with one of the keys can only be decrypted with the other key.
+
+    - It is computationally infeasible to recover one key from the other
+
+    - Public-key cryptosystems solve the problem of secure key distribution because the 
+        public key can be openly revealed to anyone without weakening the cryptosystem.
+
+
+- Generating Public/Private Pairs
+
+    - Choose 2 large random prime numbers
+
+    - Multiply them
+
+    - Compute public and private keys from that very large number
+
+
+        Large Random Number
+                |
+                V
+        Key Generation Program
+                /\
+               /  \
+              /    \
+          Public  Private
+
+
+- Public Key Math (Light)
+
+    - What are the factors of 55,124,159 (a nearly prime number)?
+        - Hard
+
+    - What do you multiply 7919 by to get 55,124,159?
+        - Easy -> 6961
+
+
+- Key Exchange Example
+
+    1. I send a request to amazon.com, which initiates secure communication
+
+    2. Amazon.com sends me their public key
+
+    3. I send a message to amazon.com, which I encrypt using their public key
+          Plaintext: "Visa928"
+              |
+              |  Encrypt with Public Key
+              V
+          Ciphertext:"ablghyuip"
+
+    4. Amazon uses their private key to decrpyt the message.
+
+         Ciphertext:"ablghyuip"
+              |
+              |  Decrypt with Private Key
+              V
+         Plaintext: "Visa928"
+
+
+
+- TCP with SSL
+
+    - TCP connections are sometimes called 'sockets'.  When 'Secure Sockets Layer' is used,
+        encryption is implemented in the Transport Layer, and applications can just use it
+        transparently.
+
+        APPLICATION LAYER
+
+        SECURE SOCKETS LAYER
+        TRANSPORT LAYER
+
+        INTERNET LAYER
+
+
+- Transport Layer Security (TLS)
+
+    - Used to be called “Secure Sockets Layer”  (SSL)
+
+    - Can view it as an extra layer “between” TCP and the application layer
+
+    - It is very difficult but not impossible to break this security - normal people do not 
+        have the necessary compute resources to break TLS
+
+    - Encrypting and decryption takes resources - so we use it for things when it is needed
+
+    - The IP and TCP are unaware whether data has been encrypted
+
+
+- Secure Application Protocols
+
+    - There are often secure and unencrypted application protocols
+
+        http://www.facebook.com
+        https://www.facebook.com
+
+    - Your browser tells you when using a secure connection - you should never type 
+        passwords into a non-secure connection
+
+    - Especially over wireless - especially at a security conference...
+
+
+
+
 
 -----------------------------------------------------------------------
 |  PART 5 - INTEGRITY & CERTIFICATE AUTHORITIES                       |
