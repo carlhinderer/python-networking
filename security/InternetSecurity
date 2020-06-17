@@ -405,3 +405,73 @@
 |  PART 5 - INTEGRITY & CERTIFICATE AUTHORITIES                       |
 -----------------------------------------------------------------------
 
+- Digital Certificates
+
+    - In cryptography,  a  public key certificate (also known as a 'digital certificate'
+        or 'identity certificate') is an electronic document which uses a digital signature 
+        to bind a public key with an identity — information such as the name of a person
+        or an organization, their address, and so forth. 
+
+    - The certificate can be used to verify that a public key belongs to an individual.
+
+
+- Certificate Authority (CA)
+
+    - A certificate authority is an entity that issues digital certificates. 
+
+    - The digital certificate certifies the ownership of a public key by the named subject 
+        of the certificate. 
+
+    - A CA is a trusted third party that is trusted by both the owner of the certificate and 
+        the party relying upon the certificate.
+
+    - Your browser comes with certificates/public keys from some certificate authorities 
+        built in.  Like Verisign.
+
+
+- Public Key Issues
+
+    - Public-key cryptosystems have the problem of securely associating a public key with an 
+        individual
+
+    - I am about to type in my credit card and send it - am I being Phished?
+
+    - The remote server sent me a public key.
+
+    - Should I use it? Is this really Amazon's public key?
+
+
+- Verisign Example
+
+    1. Verisign has their private key, which they keep secret.
+
+    2. Verisign's public keys are added your trusted CAs by your OS vendor.
+
+
+    3. Amazon generates a public/private key pair.
+
+    4. Amazon sends their public key to Verisign.
+    
+    5. Verisign takes Amazon's public key and adds a digest created from Verisign's private key.
+
+        Cert: Amazon
+        Digest: Verisign
+
+       Amazon's digital certificate has now been created and signed by Verisign.
+
+
+    6. Verisign sends the digital certificate back to Amazon.  It says that "I am amazon.com,
+         and Verisign is asserting I really am."
+
+    7. Your laptop makes a request to Amazon with an 'https' connection.  Amazon sends you their
+         public key.  
+
+       In your laptop, you have the Verisign public key.
+
+    8. You use the Verisign public key to verify that Amazon's public key has been signed.
+
+
+    9. Now, since we have verified Amazon's public key, we send our data, which we encrypted 
+         using their public key.
+
+    10. Amazon gets the message and decrypts it using their private key.
