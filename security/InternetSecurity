@@ -1,0 +1,83 @@
+-----------------------------------------------------------------------
+|  PART 1 - SECURITY BASICS                                           |
+-----------------------------------------------------------------------
+
+- Let's Meet Some Nice People
+
+    Bob                    Alice
+    ------------        ----------------
+    -A-> hello             hello
+         ALICE             ALICE
+           |                 ^
+           V                 |
+      x0Ak3o$2Rj  -->   x0Ak3o$2Rj  <-A-
+
+
+- People with Bad Intent
+
+    - Carol, Carlos or Charlie, as a third participant in communications.
+
+    - Chuck, as a third participant usually of malicious intent
+
+    - Dan or Dave, a fourth participant
+
+    - Eve, an eavesdropper, is usually a passive attacker. While she can listen in on 
+        messages between Alice and Bob, she cannot modify them.
+
+
+- Paranoia
+
+    - Who is out to get you?
+
+    - If you are interesting or influential people want to get into your personal info.
+
+    - If you are normal, folks want to use your resources or take your information to 
+        make money...
+
+    - Usually no one cares...  But it is safest to assume some is always trying...
+
+
+- Security is always a Tradeoff
+
+    - "Perfect security" is unachievable - Must find the right tradeoff
+
+    - Security versus Cost
+
+    - Security versus Convenience (See also, "profit")
+
+    - "More" is not always better – vendors of products will try to convince you that you 
+        *cannot live* without their particular gadget
+
+
+- Terminology
+
+    - Confidentiality
+        - Prevent unauthorized viewing of private information
+
+    - Integrity
+        - Information is from who you think it is from and has not been modified since it 
+            was sent
+
+
+
+
+
+-----------------------------------------------------------------------
+|  PART 2 - ENCRYPTION & CONFIDENTIALITY                              |
+-----------------------------------------------------------------------
+
+
+-----------------------------------------------------------------------
+|  PART 3 - INTEGRITY & SIGNATURES                                    |
+-----------------------------------------------------------------------
+
+
+-----------------------------------------------------------------------
+|  PART 4 - PUBLIC/PRIVATE KEYS & SECURE SOCKETS                      |
+-----------------------------------------------------------------------
+
+
+-----------------------------------------------------------------------
+|  PART 5 - INTEGRITY & CERTIFICATE AUTHORITIES                       |
+-----------------------------------------------------------------------
+
