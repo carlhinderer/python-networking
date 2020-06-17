@@ -151,6 +151,133 @@
 |  PART 3 - INTEGRITY & SIGNATURES                                    |
 -----------------------------------------------------------------------
 
+- Cryptographic Hashes
+
+    - A cryptographic hash function is a function that takes an arbitrary block of data 
+        and returns a fixed-size bit string, the (cryptographic) hash value, such that 
+        an accidental or intentional change to the data will change the hash value. 
+
+    - The data to be encoded is often called the "message," and the hash value is sometimes 
+        called the message digest or simply digest.
+
+
+        Input                Cryptographic          Digest
+        -----------  ---->   Hash           ---->   -----------------
+        Fox                  Function               DFCD 3454 BREA 789A 751A
+                                                    686C 24D9 9081 E6EE FB45
+
+
+    - Remember that unlike encryption/decryption, hashing is a one-way function and cannot be
+        reversed.
+
+
+- Hashes for Passwords
+
+    - As a general rule, systems do not store your password in plain text their 
+        databases in case they 'lose' their data
+
+    - When you set the password, they compute a hash and store the hash
+
+    - When you try to log in they compute the hash of what you type as a password and if 
+        it matches what they have stored - they let you in.
+
+    - This is why a respectable system will never send your PW to you - they can only 
+        reset it!
+
+
+- Password Hashing Example
+
+    [Setting a new password]
+
+      fluffy       SHA-1       d9d71ab718931a89de1e986bc62f6c988ddc1813
+
+    [Log in attempt]
+
+      pony         SHA-1       2629fb6d2384da89796a4811ef6db5f2ac657bab     Doesn't Match
+      fluffy       SHA-1       d9d71ab718931a89de1e986bc62f6c988ddc1813     Match
+
+
+- Message Integrity
+
+    - When you get a message from someone, did that message really come from who you think 
+        it came from?
+
+    - Was the message altered while in transit or is the copy you received the same as the 
+        copy that was sent?
+
+                         You
+        [Insecure        --------------------------- 
+         Medium]   --->  "Eat More Ovaltine--Annie"
+
+      How might we be very sure this message really came from Annie and it was not altered 
+        enroute?
+
+
+- Simple Message Signing
+
+    - Shared secret transported securely 'out of band'
+
+    - Before sending the message, concatenate the secret to the message
+
+    - Compute the SHA digest of the message+secret
+
+    - Send message + digest across insecure transport
+
+
+- Receiving a Signed Message
+
+    - Receive message + digest from insecure transport
+
+    - Remove digest and add secret
+
+    - Compute SHA digest for message + secret
+
+    - Compare the computed digest to the received digest
+
+
+- Message Signing Example
+
+    1. The secret is 'Santa'.
+       The message is 'Eat More Ovaltine'
+
+       We concatenate the secret to the message, Compute the SHA digest of the 
+         message+secret, and send message + digest.
+
+
+         Eat More Ovaltine
+         Eat More OvaltineSanta  --->  SHA-1  --->  a79540
+
+       We send
+
+         Eat More Ovaltinea79540
+
+
+    2. We receive the string and split the digest off.
+
+         Eat More Ovaltine    a79540
+
+       We take the message, concatenate the shared secret, and get the digest.
+
+         Eat More OvaltineSanta  -->  SHA-1  -->  a79540
+
+       Since the received and local digests match, we can be sure the message is genuine.
+         If they do not match, we cannot trust the message.
+
+
+
+- Secret Key Shortcomings 
+
+    - Every pair of people/systems needs a secret key
+
+    - In the Internet, key distribution cannot be via the Internet because communications 
+        are insecure until you get the key!
+
+    - For the Internet to work we need an approach where keys can cross the insecure 
+        Internet and be intercepted without compromising security
+
+
+
+
 
 -----------------------------------------------------------------------
 |  PART 4 - PUBLIC/PRIVATE KEYS & SECURE SOCKETS                      |
