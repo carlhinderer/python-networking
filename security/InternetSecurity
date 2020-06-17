@@ -66,6 +66,86 @@
 |  PART 2 - ENCRYPTION & CONFIDENTIALITY                              |
 -----------------------------------------------------------------------
 
+- Terminology
+
+    - Plaintext is a message that will be put into secret form.
+
+    - Ciphertext is a transformed version of plaintext that is unintelligible to anyone 
+        without the means to decryptTerminology
+
+    - The transformation of plaintext to ciphertext is referred to as encryption.
+
+    - Returning the ciphertext back to plaintext is referred to as decryption.
+
+    - The strength of a cryptosystem is determined by the encryption and decryption 
+        techniques and the length of the key.
+
+
+- Two Kinds of Systems
+
+    - Two basic types of cryptosystems exist, secret-key and public-key.
+
+    - In a secret-key scheme, the key used for encryption must be the same key used for 
+        decryption.  Also called symmetric-key cryptosystem.
+
+    - Secret-key cryptosystems have the problem of secure key distribution to all parties 
+        using the cryptosystem.
+
+
+- Secret-Key Scheme
+
+
+      Plaintext:           c = d           Plaintext:
+      "candy"              a = b           "candy"
+                           n = o
+      Encrypt              d = e           Decrypt
+                           y = z
+
+      CipherText:      Message Might       CipherText:
+      "dboez"          Be Intercepted      "dboez"
+
+      Alice                 Eve              Bob
+
+
+
+- Caesar Cipher
+
+    - Caesar cipher is one of the simplest and most widely known encryption techniques. 
+
+    - It is a type of substitution cipher in which each letter in the plaintext is 
+        replaced by a letter some fixed number of positions down the alphabet.
+
+        A B C
+        | | |
+        V V V    shift of 3
+        D E F
+
+
+- Example - Break the Code 1
+
+    CipherText: "upbtu"
+
+    Strategy:
+      - Use the decoder ring.
+      - For each number 1..26, see if when you decrypt the message with that shift, it 
+          makes sense.
+
+    PlainText: "toast" (Shift of 1)
+
+
+- Example - Break the Code 2
+
+    CipherText: "Uryyb, zl anzr vf Puhpx naq V arrq zbarl naq n wrg."
+
+    Strategy:
+      - We know the message is in English.
+      - We use the 'V' -> 'I' and 'n' -> a to get the shift of 13.
+
+    PlainText: "Hello, my name is Chuck and I need money and a jet."
+
+
+
+
 
 -----------------------------------------------------------------------
 |  PART 3 - INTEGRITY & SIGNATURES                                    |
