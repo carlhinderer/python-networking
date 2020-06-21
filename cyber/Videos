@@ -1,0 +1,81 @@
+--------------------------------------------------------------------------------------
+|    1.1 - Week One                                                                  |
+--------------------------------------------------------------------------------------
+
+- Worms
+
+    - Worm Propogation
+
+        1. Find a target
+        2. Copy worm to target
+        3. Remote execution on target
+
+    - Morris worm of 1988 (99-line program) brought entire internet down
+
+
+- Trojan Horse Login Program
+
+    - Looks like one thing, but is actually something different
+
+    - Trap Door
+
+        if password == stored_password or password == 'abc123':
+            login()...
+
+    - Possible Fixes:
+
+       A. Testing the software
+       B. Code review
+       C. Process compliance
+
+
+- Malicious Compiler Program
+
+    - Ken Thompson came up with the idea that a trap door could evade being detected by code review
+        if you create the trap door in the compiler.
+
+    - "You can't trust code that you did not totally create yourself."
+          - Ken Thompson
+
+    - One solution might be to make compiler providers sign legal contract stating they don't have
+        trap doors like this present.
+
+
+- Typical Unix Kernel Attack
+
+    - Using 'Unix' as a generic term for the entire family of Unix-like systems (Linux, OSX, Android, etc.)
+
+    - Typical Attack
+
+        1. The "IFS" (input field separator) variable defines which characters can be used as separators
+             in commands (usually a space is used).
+
+           We want to set the IFS variable to include both space and slash (' /').
+           So, "/etc/file" is the same as "etc file".
+
+
+        2. Find a setuid-to-root program
+
+           Allows normal user root access
+
+
+        3. Find an open source program that has a 'setuid-to-root' critical section
+
+           For example, maybe the region includes 'exec /etc/protect/file'
+
+           See the 'at' command
+
+
+        4. Unix Shell Program - /bin/sh
+
+           Allows copying ("cp /bin/sh hackshell") the kernel to your user directory
+
+           The copied program inherits privileges
+
+
+    - In summary,
+
+        1. Change internal field separator
+        2. Copy UNIX shell
+        3. Run setuid program
+        4. Copy shell
