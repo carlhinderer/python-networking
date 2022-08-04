@@ -1,0 +1,206 @@
+-----------------------------------------------------------------------------
+| CHAPTER 5 - THE NETWORK LAYER                                             |
+-----------------------------------------------------------------------------
+
+- IPv4 Addresses
+
+    - Every host and router on the internet has an IP address (32-bit in IPv4).  IP packets have a
+        'source address' and 'destination address'.
+
+
+    - Actually, an IP address refers to a network interface, not a host.  Since most hosts are on one
+        network, they have one IP address.  However, routers have multiple interfaces and multiple IP
+        addresses.
+
+
+
+- Prefixes
+
+    - IP addresses are hierarchical, unlike Ethernet addresses.  Each 32-bit address has a 
+        variable-length network portion, followed by a host portion.
+
+      The network portion has the same value for all hosts on a single network (such as an Ethernet
+         LAN).  This means that a network corresponds to a contiguous block of IP addresses called a
+         'prefix'.
+
+
+    - Addresses have 4 segments, each with a value 0-255.  This is known as 'dotted decimal notation'.
+
+        128.208.2.151
+
+
+    - Prefixes are written by giving the lowest IP address of the block and the size of the block.  The
+        size is determined by the number of bits in the network portion.
+
+      By convention, the IP address has a slash, followed by the number of bits in the network portion.
+
+        128.208.2.0/24
+
+
+    - Since the prefix length cannot be determined from the IP address alone, routing protocols must
+        also include the prefix.
+
+
+    - The length of the prefix corresponds to a binary mask of 1s in the network portion.  When written
+        out this way, it is called a 'subnet mask'.  It can be AND'ed with the IP address to extract
+        only the network portion.
+
+        255.255.255.0
+
+
+    - Advantages of Hierarchical Routing
+
+        1. Routers can forward packets based only on the network portion of the address.  The host
+             portion can be ignored, since all packets to the same network will be sent in the same
+             direction.
+
+           This makes routing tables much smaller than they would normally be.  Modern routers only need
+             about 300K entries in their routing tables.
+
+
+    - Disadvantages of Hierarchical Routing
+
+        1. The IP address of a host depends on where it is located in the network.  IP addresses are 
+             unable to move between networks.
+
+
+        2. The hierarchy of addresses is wasteful unless carefully managed.  Large blocks of addresses
+             were allocated, then left unused.  Explosive growth of the internet rapidly depleted the
+             address space.
+
+
+
+- Subnets
+
+    - Routing by prefix requires all hosts on a network to have the same network number.  This can 
+        cause problems as networks grow, for instance if separate departments of a company want to
+        use the same block of addresses.
+
+
+    - The solution is to allow the block of addresses to be split into several parts for internal use 
+        as multiple networks, while still acting like a single network to the outside world.
+
+      This is called 'subnetting' and the networks (such as Ethernet LANs) that result from dividing up
+        a larger network are called 'subnets'.
+
+
+
+- Subnetting Example
+
+    - Here, the single /16 has been split into pieces.  The split does not need to be even.
+
+        - Half of the block (a /17) is allocated to the CS department.
+        - A quarter (a /18) is allocated to the EE department.
+        - An eighth (a /19) is allocated to the Art department.
+        - An eighth remains unallocated.
+
+
+        EE   28.208.0.0/18        \
+
+        CS   128.208.128.0/17    --->   128.208.0.0/16    To Internet
+
+        Art  128.208.96.0/19      /
+
+
+    - To route packets, the router needs to figure out which subnet to send them to.  They could just
+        keep 65,536 entries for each host on campus, but we wouldn't get the benefit of hierarchical
+        routing.
+
+      Instead, the router just needs to know the subnet masks for the networks on campus.
+
+
+    - Outside the network, subnetting is not viable, so allocating a new subnet does not require
+        contacting ICANN or changing any external databases.
+
+
+
+- CIDR (Classless InterDomain Routing)
+
+    - Even if blocks of IP addresses are allocated efficiently, we still have a problem with routing 
+        table explosion.
+
+
+    - Routers in organizations at the edge of a network need to have an entry for each of their
+        subnets specifying which line to use to get to that network.  For packets destined for outside 
+        the network, they can just send it in the direction of the ISP.
+
+
+    - Routers in ISPs and backbones don't have these luxuries.  They must know how to get to every
+        single network, and there is no default.  Since there are more than a million networks
+        connected to the internet, and each packet must perform a lookup in the table, this has
+        significant cost.
+
+      Also, routers must share their routing tables with each other, and this becomes more expensive
+        as the tables get bigger.
+
+
+    - 
+
+
+
+- CIDR Example
+
+    - 
+
+
+
+- Classful and Special Addressing
+
+    - Before 1993 (and CIDR), IP addresses were divided into five categories.
+
+        A   1.0.0.0 - 127.255.255.255  (24 bits for host)
+
+        B   128.0.0.0 - 191.255.255.255  (16 bits for host)
+
+        C   192.0.0.0 - 223.255.255.255  (8 bits for host)
+
+        D   224.0.0.0 - 239.255.255.255  (Multicast)
+
+        E   240.0.0.0 - 255.255.255.255  (Reserved for future use)
+
+
+    - Multicast internet is just now starting to be used.
+
+
+    - Note that class E addresses would be valuable space these days, but it can't be used since so 
+        many hosts won't recognize the addresses.
+
+
+    - For most organizations, a class A address (16 million addresses) is way too big.  A class C
+        address (256 addresses) is way too small.  A class B address (65,526 addresses) is just
+        right.
+
+      For this reason, everyone wanted a class B, but there are only 16,384 class B addresses.
+
+
+    - To handle this problem, subnets were introduced.  Later, CIDR was added to reduce the size of
+        the global routing table.  Today, the bits that indicate the class of the IP address are
+        A, B, and C are no longer used.
+
+
+
+- Special Addresses
+
+    - The address '0.0.0.0' is used by hosts when they are being booted.  It means 'this network' or
+        'this host'.
+
+
+    - IP addresses with '0' as their network number refer to the current network.  It allows machines
+        to refer to their own network without knowing it's number.
+
+
+    - The address '255.255.255.255' is used to mean all hosts on the indicated network.  It is used
+        for broadcast on a LAN.
+
+
+    - Addresses with a network number, plus all 1's in the host field, can broadcast packets to any
+        distant network on the internet.  However, this is usually disabled by admins for security
+        reasons.
+
+
+    - All addresses of the form '127.x.x.x' are reserved for loopback testing.  Packets sent to that
+        address are not put on the wire.  They are processed locally and treated as incoming packets.
+
+
+
+- NAT (Network Address Translation)
