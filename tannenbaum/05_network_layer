@@ -128,19 +128,53 @@
     - Routers in ISPs and backbones don't have these luxuries.  They must know how to get to every
         single network, and there is no default.  Since there are more than a million networks
         connected to the internet, and each packet must perform a lookup in the table, this has
-        significant cost.
+        significant cost.  This is known as the 'default-free zone'.
 
       Also, routers must share their routing tables with each other, and this becomes more expensive
         as the tables get bigger.
 
 
-    - 
+    - To help alleviate this problem, we can use the same insight we used with subnetting: routers at
+        different locations can know about a given IP address as belonging to prefixes of different
+        sizes.
+
+      Instead of splitting an address block into subnets, we can combine multiple small prefixes into
+        a single larger prefix.  This is known as 'route aggregation'.
+
+
+    - With route aggregation, IP addresses are contained in prefixes of different sizes.  The same IP
+        address can be treated by one router as /22, while another router treats it as /20.  It's
+        up to each router to to have the corresponding prefix information.
+
+      This design works with subnetting and is called 'CIDR'.
 
 
 
 - CIDR Example
 
-    - 
+    - We have a block of 8192 IP addresses, starting at 192.24.0.0.
+
+
+    - The address block is divided up among Cambridge, Edinburgh, and Oxford Universities like this:
+
+        University     First address     Last address     How many     Prefix
+        ------------------------------------------------------------------------------
+        Cambridge      194.24.0.0        194.24.7.255     2048         194.24.0.0/21
+        Edinburgh      194.24.8.0        194.24.11.255    1024         194.24.8.0/22
+        (Available)    194.24.12.0       194.24.15.255    1024         194.24.12.0/22
+        Oxford         194.24.16.0       194.24.31.255    4096         194.24.16.0/20
+
+
+    - The London router notices this split, and combines the 3 prefixes into a single aggregate entry
+        for the prefix '194.24.0.0/19' and passes it to the New York router.
+
+                                                         /   192.24.0.0/21   ->   Cambridge
+        New York   ->    (192.24.0.0/19)   ->   London   -   192.24.16.0/20  ->   Oxford
+                                                         \   192.24.8.0/22   ->   Edinburgh
+
+
+    - When turned on, this is an automated process.  Aggregation is heavily used throughout the
+        Internet and can reduce the size of router tables to around 200,000 prefixes.
 
 
 
@@ -200,7 +234,3 @@
 
     - All addresses of the form '127.x.x.x' are reserved for loopback testing.  Packets sent to that
         address are not put on the wire.  They are processed locally and treated as incoming packets.
-
-
-
-- NAT (Network Address Translation)
