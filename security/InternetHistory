@@ -86,7 +86,7 @@
 
     - The problem: in store and forward, large messages block small ones
     - The solution is to break each message into packets
-    - We can alows the packets from a single message to travel over different paths
+    - We can allow the packets from a single message to travel over different paths
     - We use special computers called 'routers' for traffic control (only forward, don't store)
 
 
@@ -281,7 +281,7 @@
     - Tim Berners-Less and Robert Cailliau were building a system for network hosted documentation
     - Paul Kunz was trying to make his article database easier to use
     - Joseph Hardin wanted to make supercomputers more user friendly
-    - Mitchell Baker - Just wanted us to have a free and open source browse
+    - Mitchell Baker - Just wanted us to have a free and open source browser
 
 
 - The Web Land Rush
