@@ -1,0 +1,56 @@
+-----------------------------------------------------------------------
+|  From CIA to APT - by Edward Amoroso and Matthew Amoroso            |
+-----------------------------------------------------------------------
+
+
+-----------------------------------------------------------------------
+|  CHAPTER 1 - CYBER THREATS                                          |
+-----------------------------------------------------------------------
+
+- The offense only needs to find one way to break in your system.  The defense must
+    prevent all such paths.  For this reason, offense will always be way ahead of
+    defense.
+
+
+- Threats
+
+    1. Confidentiality
+         - Sensitive information is leaked
+         - Implement encryption to prevent
+
+    2. Integrity
+         - Malware
+         - Malware not so dangerous on your PC, very dangerous in nuclear power plant
+
+    3. Availability
+         - Intentional blocking of access to an asset
+         - ie a DDoS attack
+
+    4. Fraud
+         - Considered to be the 4th threat type by some experts
+
+
+- Confidentiality Example
+
+    - John Podesta, HRC's campaign manager, reused email passwords across multiple accounts
+    - Had unencrypted passwords sent across the internet
+    - In 2016, many emails were leaked, causing embarassment
+
+
+- Integrity Example
+
+    - In 2014, hackers gained remote access to Sony Pictures' enterprise network
+    - Found vulnerabilities in the firewall perimeter
+    - Corrupted administrative software on 10000s of computers, rendering them useless
+    - Also exposed embarassing email content
+
+
+- Availability Example
+
+
+
+
+
+-----------------------------------------------------------------------
+|  CHAPTER 2 - CYBER ATTACKS                                          |
+-----------------------------------------------------------------------
