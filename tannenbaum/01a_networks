@@ -1,0 +1,409 @@
+-----------------------------------------------------------------------
+| CHAPTER 1A - NETWORKS                                               |
+-----------------------------------------------------------------------
+
+- Ecommerce Categories
+
+    B2C     Business to Consumer
+    B2B     Business to Business
+    G2C     Government to Consumer
+    C2C     Consumer to Consumer
+    P2P     Peer to Peer
+
+
+
+- CDNs (Content Delivery Networks)
+
+    - A large collection of servers is distributed around the world.  Content, ranging from static files
+        to streaming video, is replicated in many locations across a single CDN.
+
+    - When a user requests content, the CDN must decide which replica it should serve to the user based
+        on geographic location, load on the CDN server, and traffic and congestion on the network.
+
+    - Large content provides like Google, Amazon, Netflix operate their own CDNs.  Some CDNs, like
+        Akamai and Cloudflare, operate their own CDNs.
+
+
+
+- Transit Networks
+
+    - Typically, content and applications are hosted in data-center networks.  You are accessing content
+        from an access network.  Content must traverse the Internet from the data center to the access
+        network.
+
+    - When the content provider and your ISP are not directly connected, they rely on a transit network
+        to carry the traffic between them.  Transit networks typically charge both the ISP and the
+        content provider for carrying traffic from end to end.
+
+    - If the network hosting the content and the access network exchange enough traffic, they may decide
+        to interconnect directly.  For instance, large ISPs connect directly to Google and Netflix, using
+        infrastructure built for this purpose.
+
+    - Transit networks are traditionally called 'backbone networks'.  This used to be a hugely
+        profitable business, but the expansion of huge content providers and huge ISPs has led to less
+        reliance on backbones and more on direct interconnections between content providers and ISPs.
+
+
+
+- Enterprise Networks
+
+    - Companies need to connect many offices and resources together.  Networks called VPNs connect the
+        individual networks at different sites into one logical network.
+
+    - Telephone calls are now commonly made using computer networks.  This is called 'IP Telephony' or
+        'VOIP'.
+
+
+
+- PANs (Personal Access Networks)
+
+    - PANs let devices used by a single person communicate with each other.  For instance, a computer
+        connects with it's peripherals.
+
+    - While a monitor is typically attached with a cable, many other peripherals now use Bluetooth, a
+        short-range wireless network, to connect these peripherals without wires.
+
+
+
+- LANs
+
+    - A LAN is a private network that operates within a single building, such as a home, office, or
+        factory.
+
+    - Wireless LANs are pervasive today.  Each computer has a radio modem and an antenna it uses to
+        connect to other computers.  In most cases, each computer talks to a device called an AP (Access
+        Point), wireless router, or base station.  This device relays packets between the wireless
+        computers and the internet.
+
+    - In a 'Mesh Network', devices relay packets between one another.  These are common in developing
+        regions where deploying connectivity is difficult or costly.
+
+    - The IEEE 802.11 standard, also known as 'WiFi', is the most popular standard for wireless
+        communications.
+
+    - Wired LANs use many different transmission technologies.  Common physical modes of transportation
+        are copper, coaxial cable, and optical fiber.  Since they have limited size, worst-case
+        transmission time is bounded and transmission errors are infrequent.
+
+    - IEEE 802.3, aka 'Ethernet', is by far the most common type of wired LAN.  In a 'Switched Ethernet'
+        network, each computer speaks the Ethernet protocol and connects to a device called a 'switch'
+        with a point-to-point link.  The switch relays packets between computers that are attached to it,
+        using the address in each packet to determine which computer to send it to.
+
+    - A switch has multiple ports, each of which can connect to one other device.  To build larger LANs,
+        switches can be plugged into each other using their ports.  If they are plugged together in a 
+        loop, they will still work, thanks to an anti-looping algorithm.
+
+    - It is possible to divide one large physical LAN into several smaller logical LANs, for instance to
+        separate departments of a company.  These are called VLANs (Virtual LANs).
+
+    - 'Classic Ethernet', the original Ethernet design, broadcasted all packets over a single cable.
+        Only one machine could transmit at a time, and a distributed arbitration mechanism was used to
+        resolve conflicts.  If two packets collided, each computer just waited a random time and tried
+        again later.
+
+
+
+- Home Networks
+
+    - Home networks, a specific type of LAN, may now consist of many different types of devices connected
+        together.  The IoT adds lots of potential devices to a single network.
+
+    - Even though the home network is just another LAN, it has some different properties.  Devices need
+        to be easy for anyone to install and maintain.  Security and reliability have high stakes for
+        consumer health and safety.  There is a diverse set of devices connected to the network, as 
+        opposed to a more homogenous corporate network, and legacy devices are connected for many years.
+        Also, profit margins are small, which may lead to security and reliability being an afterthought.
+
+    - 'Power-line Networks' let devices that plug into outlets broadcast information throughout the house.
+        You plug a TV into the wall, and both power and data signals are sent at the same time.
+
+
+
+- MANs (Metropolitan Area Networks)
+
+    - A MAN covers a city.  The best known examples are cable television networks.  Until the late 1990s,
+        these were intended for television channel reception only.
+
+    - When the Internet began attracting a large audience, cable providers started providing two-way
+        Internet service with the unused parts of the spectrum.
+
+                        / Junction Box
+        Cable Head-End  - Junction Box / House
+                        \ Junction Box - House
+                                       \ House
+
+    - Recent developments in high-speed wireless Internet access has resulted in another type of MAN,
+        defined as IEEE 802.16 (commonly called 'WiMAX').
+
+
+
+- WANs
+
+    - A WAN spans a large geographical area, like a country, or even multiple continents.  It may serve
+        a private organization (an enterprise WAN) or it may be a commercial offering (transit network).
+
+    - We may have branch offices in different cities, and we want to connect all the computers in these
+        offices ('hosts') together.  The network that connects these hosts together is called the
+        communication subnet ('subnet').
+
+    - In most WANs, the subnet consists of transmission lines (which move bits around), usually leased
+        from a telecomms company, and switching elements, which connect transmission lines.  The most
+        commonly used name for these switching elements is 'router'.
+
+    - The network decides which path to use to connect transmission lines using a 'routing algorithm'.
+        How each router decides where to send a packet next is called a 'forwarding algorithm'.
+
+    - Composite networks that connect more than one network are called 'internetworks'.
+
+
+
+- VPNs and SD-WANs
+
+    - Instead of leasing dedicated transmission lines, an organization might rely on Internet connectivity
+        to connect it's offices.  This is called a VPN.  This provides a lot of flexibility, but there is
+        a lack of control over the underlying resources.
+
+    - Satellite networks are a type of WAN.  They are most useful when broadcast is important or no
+        ground-based infrastructure is present.
+
+    - The cellular telephone network is another type of WAN.
+        - 1G = Analog and voice only
+        - 2G = Digital and voice only
+        - 3G = Digital for voice and data
+        - 4G = Purely digital, even for voice
+        - 5G = Faster and lower delays
+
+    - More recently, organizations are using SD-WANs (Software-Defined WANs) to connect disjoint sites.
+        This is an example of SDNs (Software-Defined Networks), which describe network architecture
+        using a combination of programmable switches.
+
+
+
+- Internetworks
+
+    - A collection of interconnected networks, each using different technologies, is an 'internet'.  The
+        global 'Internet' is the largest internet.
+
+    - The device that makes a connection between networks and provides the necessary hardware and
+        software translation is a 'gateway'.  Gateways are distinguished by layer at which they operate
+        in the protocol hierarchy.  Generally, an internet will be connected by network-layer gateways.
+
+
+
+- History of the Internet
+
+    - The Internet is a vast collection of different networks that use common protocols and provide
+        common services.  For a history of how it came about, read 'How the Internet Happened' by
+        Brian McCullough.
+
+    - In the late 1950s, the US DOD wanted a command-and-control network that could survive a nuclear
+        war.  At the time, all military communications used the public telephone network, which was
+        considered vulnerable due to it's hierarchical nature.  Paul Baran at the RAND Corporation 
+        suggested a packet-switched network, but the idea went nowhere.
+
+    - After Sputnik (1957), President Eisenhower created a single defense research organization, ARPA
+        (Advanced Research Projects Agency) to fund projects across branches of the military.  In
+        1967, a proposal was made to revive the packet-switching idea.  A store-and-foward design with
+        interconnected hosts was designed.
+
+    - An experimental network went online in 1969 with nodes at UCLA, UCSB, SRI, and the University of
+        Utah.  3 years later, the network spanned the entire USA.  ARPA also funded research on using 
+        satellite and mobile packet radio networks.  A famous experiment was conducted where a truck
+        driving through CA used the radio network to send messages over ARPANET to the east coast, where
+        they were relayed over satellite to a network in London.
+
+    - This experiment demonstrated that the ARPANET protocols were not meant to run over different 
+        networks, so TCP/IP was invented (1974) and funded.  TCP/IP was specifically designed to handle
+        communication over internetworks.  ARPA funded contracts to implement TCP/IP on different
+        computer platforms - IBM, DEC, HP, and Berkeley UNIX.
+
+    - Researchers at UCB rewrote TCP/IP with a new programming interface called 'sockets'.  They also
+        wrote many application, utility, and management programs to show how convenient sockets was
+        to use.  This complete package was adopted by many universities immediately.
+
+    - In the late 1970s, the National Science Foundation funded NSFNET to facilitate university research.
+        A network was built out with a backbone and regional networks, and it connected to ARPANET.
+        Fiber-optic channels were leased from MCI and communication speeds rapidly improved.  By 1990,
+        the second NSFNET backbone was upgraded to 1.5 Mbps.
+
+    - As growth continued, NSF realized government couldn't keep funding it, and commercial organizations
+        wanted to get involved.  MERIT, MCI, and IBM formed a nonprofit corporation called ANS (Advanced
+        Networks and Services).  In 1990, ANS took over NSFNET and upgraded links to 45 Mbps to form
+        ANSNET.  This network operated for 5 years and was then sold to America Online.  The government
+        got out of the networking business.
+
+    - To ease the transition and make sure regional networks could communicate with each other, NSF
+        awarded contracts to 4 different network operators to establish a NAP (Network Access Point).
+        - PacBell (San Francisco)
+        - Ameritech (Chicago)
+        - MFS (Washington DC)
+        - Sprint (NYC)
+
+    - This arrangement meant that each regional network had a choice of backbone carriers, and the
+        backbone carriers were forced to compete on service and price, leading to an explosion of
+        commercially-driven competitive architecture.
+
+
+
+- The Internet Architecture
+
+    - A common method for connecting to the Internet from your home is to send signals over cable TV
+        infrastructure.  The cable network, sometimes called an 'HFC' (Hybrid Fiber-Coaxial), is a
+        single integrated infrastructure that uses a packet-based transport called 'DOCSIS' (Data Over
+        Cable Service Interface Spec).  This spec is used to transmit television channels, high-speed
+        data, and voice.
+
+    - The device at the home end is called a 'cable modem' (a modulator-demodulator converts between
+        digital bits and analog signals).  The device at the cable headend is called the 'CMTS'
+        (Cable Modem Termination System).
+
+    - Access networks are limited by the 'last mile' or last leg of transmission.  The most recent
+        standard, DOCSIS 3.1, allows for full duplex (symmetric upstream and downstream rates) with
+        a maximum capacity of 10 Gbps.
+
+    - Another option for last-mile deployment is 'FTTH' (Fiber to the Home).  For businesses in 
+        commercial areas, it may make sense to lease a dedicated high-speed transmission line.  In large
+        cities, leased lines of up to 10 Gbps are available.  A T3 line runs at roughly 45 Mbps.
+
+    - We call the location at which customer packets enter the ISP network the 'POP' (Point of Presence).
+        From this point on, the system is fully digital and packet-switched.
+
+    - ISP networks may be regional, national, or international.  The architecture that includes long-distance
+        transmission lines that interconnect routers and different POPs in different cities is called
+        the 'backbone' of the ISP.  If a packet is sent to a host on a different ISP, it must be handed
+        over to a different ISP.
+
+    - ISPs connect their networks to exchange traffic at 'IXPs' (Internet Exchange Points).  The connected
+        ISPs are said to 'peer' with each other.  IXPs (buildings full of routers) are placed in cities
+        around the world.  A very fast optical LAN inside the building connects all the routers.  IXPs
+        can be large and independently owned facitilies that compete for business.  For instance, the
+        Amsterdam Internet Exchange exchanges 4 TB of traffic per second.
+
+    - The path a packet takes through the Internet depends on the peering choices of the ISPs.  Often, the
+        path a packet takes is not the shortest, but rather the least congested or cheapest.
+
+    - A small handful of 'transit providers', including AT&T and Level 3, operate large international
+        backbone networks with thousands of routers connected by high-bandwidth fiber-optic links.  These
+        ISPs are called Tier-1 ISPs and form the backbone of the Internet.  They do not pay for transit.
+
+    - Companies that provide lots of content (ie Facebook and Netflix) locate their servers in data centers
+        that are well-connected to the rest of the internet.  These data centers have 'server farms' with
+        many racks of servers.  It is now common to rent a VM in a server farm instead of running your own
+        computer.
+
+    - Conventionally, the Internet has been viewed as a hierarchy, with Tier-1 providers at the top of the
+        hierarchy.  Over the past decade, this hierarchy has flattened dramatically with the rise of giant
+        content providers (ie Google, Netflix, Twitch, Amazon) and globally distributed CDNs (ie Akamai,
+        Limelight, and Cloudflare).  Whereas in the past, content providers had to rely on transit
+        networks to deliver content to local ISPs, both the access ISPs and content providers have become
+        so large that they often connect directly to each other in many distinct locations.
+
+
+
+- Mobile Networks
+
+    - Mobile networks have more than 5 billion subscribers worldwide.  In 2018, they accounted for more
+        than half of global Internet traffic.
+
+    - The 'E-UTRAN' (Evolved UMTS Terrestrial Radio Access Network) is the radio communication protocol
+        is used over the air between the mobile device and cellular base station (now called an 'eNodeB').
+        The air interface is based on CDMA.
+
+    - The cellular base station, together wit its controller, forms the 'radio access network'.  This is
+        the wireless part of the mobile phone network.  The controller node ('RNC' or Radio Network
+        Controller) controls how the spectrum is used.  The base station implements the air interface.
+
+    - The rest of the mobile phone network carries the traffic for the radio access network.  It is called
+        the 'core network'.  In 4G, the core network became packet-switched, and is now called the
+        'EPC' (Evolved Packet Core).  This evolved from earlier GSM core systems.
+
+    - Now that data services are provided, the UMTS core network nodes connect directly to a packet-switched
+        network.  The S-GW (Serving Network Gateway) and P-GW (Packet Data Network Gateway) deliver data
+        packets between mobiles and the Internet.
+
+    - When a user moves out of the range of one cellular base station and into the range of another one,
+        the flow of data must be rerouted to the new station.  This is known as a 'handoff'.
+
+    - A related issue is how to find a mobile when there is an incoming call.  Each mobile phone network
+        has a HSS (Home Subscriber Server) in the core network that knows the location of each subscriber.
+        This way, any mobile can be found by contacting the HSS.
+
+    - Starting the GSM 2G, the mobile phone was divided into a handset and a removable chip containing
+        the subscriber's account and identity information.  This chip is called a SIM card (Subscriber
+        Identity Module).  SIM cards can be switched to different handsets to activate them.
+
+    - SIM cards are also used for privacy.  Since wireless signals are broadcast to all nearby receivers,
+        cryptographic keys on the SIM card are used to encrypt transmission.
+
+
+
+- Packet Switching and Circuit Switching
+
+    - Since the beginning of networking, there has been a war between packet-switched networks (which are
+        connectionless) and circuit-switched networks (which are connection-oriented).  
+
+    - The Internet community supports packet switching.  Every packet is routed independently.  If a
+        router goes down, another path to the destination can be found.  If too many packets arrive at a
+        router in a specific time interval, it will lose packets, so the application has to account for
+        this and resend missing packets.
+
+    - The telephone community supports circuit switching.  A caller must dial the party's number and wait
+        for a connection before talking or sending data.  This connection establishes a route through
+        the telephone system that is maintained until the cal is terminated.  If a line or switch on the
+        path goes down, the call is aborted.  Circuit switching makes it easier to support QoS.
+
+
+
+- Generations of Mobile Networks
+
+    - 1G mobile phone systems transmitted phone calls as continuously varying (analog) signals.  AMPS,
+        deployed in the USA in 1982, was a widely used example.
+
+    - 2G systems switched to transmitting voice calls in digital form to incease capacity, improve
+        security, and offer text messaging.  GSM, deployed starting in 1991, has been widely used
+        worldwide.
+
+    - 3G systems, initially deployed in 2001, offer both digital voice and broadband digital services.
+        UMTS is the main 3G system that is deployed worldwide.
+
+    - The scarce resource in these systems is radio spectrum.  Governments auctioned off spectrum for
+        billions of dollars.  To manange manage radio interference between users, users in a coverage
+        area are divided into cells and assigned channels that don't interfere with each other.  This
+        makes for good frequency reuse.
+
+    - 4G and 4G LTE networks emerged in the late 2000s, and quickly became the dominant mode of mobile
+        Internet access.
+
+    - 5G networks are able to offer much higher speeds by operating in much higher frequency bands (6 GHz
+        vs 20 MHz for 4G).  The challenge is that higher frequency signals do not travel as far as lower
+        frequencies, so the signal must account for signal attenuation and interference.  Methods of
+        doing this include MIMO antenna arrays.
+
+
+
+- Wireless Networks
+
+    - The first attempt at creating a standard for wireless internet was published as 802.11 in the mid
+        1990s, commonly called 'WiFi'.
+
+    - The desire to find a suitable frequency band that was available worldwide let to unlicensed bands
+        such as the ISM (Industrial, Scientific, and Medical) bands.
+
+    - 802.11 networks have clients and infrastructure called Access Points, which connect to the wired
+        network.
+
+    - There are many WiFi standards which use the available spectrum in various ways, including hopping
+        between frequencies or spreading the signal across the allowed spectrum.
+
+    - Since wireless is inherently a broadcast medium, 802.11 radios also have to deal with the problem
+        of collisions.  To handle this problem, CSMA (Carrier Sense Multiple Access) is used.  
+        Computers wait for a short random interval before transmitting and defer their transmissions if
+        someone else is already transmitting.  After a collision, a sender waits another, longer random
+        delay before transmitting.
+
+    - Since wireless transmissions are broadcast, it is easy for nearby computers to receive packets
+        that weren't met for them.  To prevent this, the 802.11 standard included an encryption scheme
+        called WEP (Wired Equivalent Privacy).  This was followed by later standards WPA (Wifi Protected
+        Access) and WPA2.  More sophisticated protocols, such as 802.1X allow certificate-based 
+        authentication of the access point to the client.
