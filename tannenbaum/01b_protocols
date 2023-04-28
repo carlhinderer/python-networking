@@ -1,0 +1,240 @@
+-----------------------------------------------------------------------
+| CHAPTER 1B - PROTOCOLS                                              |
+-----------------------------------------------------------------------
+
+- Design Goals
+
+    - Network protocols often share a common set of design goals:
+        - Reliability
+        - Resource Allocation
+        - Evolvability
+        - Security
+
+    - Reliability is the design issue of making a network that operates correctly even though it is made
+        up of unreliable components.  Error detection and error correction are used to deal with incorrect
+        bits being received by adding redundant information.  Another reliability issue is finding a
+        working path through a network, known as 'routing'.
+
+    - Resource allocation is important in making networks scalable.  Many designs share network bandwidth
+        dynamically using statistical multiplexing.  Flow control is used to keep a fast sender from
+        swamping a slow receiver with data.  If a network is oversubscribed, congestion control may be
+        used.  Applications that want real-time delivery may use Quality-of-Service mechanisms.
+
+    - Evolvability allows new designs to emerge as networks get larger.  Protocol layering is the key
+        structuring mechanism that allows this by hiding implementation details.  Addressing (or naming)
+        allows senders and receivers of messages to be identified.  Internetworking is needed to connect
+        different types of networks.
+
+    - Networks need to defend against different kinds of threats.  Mechanisms that provide confidentiality
+        are used in multiple layers.  Authentication mechanisms prevent someone from impersonating someone
+        else.
+
+
+
+- Protocol Layering
+
+    - To reduce design complexity, most networks are organized as a stack of layers.  A 'protocol' is an
+        agreement between communicating parties on how communication is to proceed.  The entities
+        comprising the corresponding layers on different machines are called 'peers', which may be
+        software processes, hardware devices, or even human beings.
+
+    - Between each pair of adjacent layers is an 'interface', which defines which primitive operations
+        and services the lower layer makes available to the upper one.
+
+
+
+- Connections and Reliability
+
+    - A 'connection-oriented' service is modeled after the telephone system.  A service establishes a
+        connection, uses the connection, then releases it.  In most cases, the order is preserved so that
+        bits arrive in the same order they were sent.  
+
+    - In some cases, when a connection is established, the sender, receiver, and subnet conduct a 
+        'negotiation' about parameters like maximum message size and Qos.  Typically, one side makes a
+        proposal, and the other side can accept it, reject it, or make a counterproposal.
+
+    - A 'connectionless' service is modeled after the post office.  Each message carries the full
+        destination address and is routed separately through intermediate nodes.  If an intermediate node
+        receives a message in full before sending it to the next node, 'store-and-foreward switching' is
+        being used.  If messages are forwarded before being completely received, 'cut-through switching'
+        is being used.
+
+    - Some messages, like datagrams, don't require connections.  Like junk mail, they are sent without
+        expecting an acknowledgment from the receiver at all.
+
+    - Some services are reliable in the sense that they never lose data.  Typically, this is implemented
+        by having a receiver acknowledge each message.
+
+    - Reliable connection-oriented service has 2 variations: message sequences and byte streams.  With
+        message sequences, message boundaries are preserved.  With byte streams, the connection is a
+        stream of bytes with no boundaries.
+
+    - Reliable communications may not exist in a given layer.  For instance, Ethernet does not provide
+        reliable communications.  Packets may be damaged in transit.  In other applications (ie streaming
+        media), transit delays introduced by acknowledgments are unacceptable.
+
+
+    - Types of services:
+
+        [Connection-oriented]
+          1. Reliable message stream (ex sequence of pages)
+          2. Reliable byte stream (ex movie download)
+          3. Unreliable connection (ex VOIP call)
+
+        [Connection-less]
+          4. Unreliable datagram (ex electronic junk mail)
+          5. Acknowledged datagram (ex text message)
+          6. Request-reply (ex database query)
+
+
+
+- Service Primitives
+
+    - A service is formally specified by a set of 'primitives' (operations) available to user processes
+        to access the service.  If the protocol stack is located in the OS (as it usually is), the
+        primitives are normally system calls.  These calls cause a trap to kernel mode, which then turns
+        control of the machine over to the OS to send the necessary packets.
+
+
+    - Example Set of Primitives
+
+        LISTEN         # Block waiting for an incoming connection
+        CONNECT        # Establish a connection with a waiting peer
+        ACCEPT         # Accept an incoming connection with a peer
+        RECEIVE        # Block waiting for an incoming message
+        SEND           # Send a message to the peer
+        DISCONNECT     # Terminate a connection
+
+
+    - Example Service - Request-Reply Interaction
+
+        1. Server executes LISTEN and process is blocked (suspended) waiting for requests
+        2. Client executes CONNECT, which sends a packet to the server asking to connect
+        3. Server unblocks the listner, calls ACCEPT to send packet to client accepting connection
+        4. Server calls RECEIVE, which blocks the server to wait for requests from the client
+        5. The client executes SEND to transmit its request and RECEIVE to get the reply
+        6. The arrival of the request packet unbolcks the server, which then uses SEND to send a response
+        7. When the client is done, it executes DISCONNECT, sending a packet and usually blocking
+        8. The server receives the packet and sends a DISCONNECT of it's own and client is released
+
+
+    - In a nutshell, this is how connection-oriented communication works.  We could use a connectionless
+        protocol instead, but then we wouldn't be able to account for transmission errors, lost packets,
+        etc.
+
+    - A 'service' is a set of primitives that a layer provides to a layer above it.  A 'protocol' is a
+        set of rules governing the format and meaning of the packets (or messages) exchanged by the
+        peer entities within a layer.  Entities use protocols in order to implement their service
+        definitions.  The service and protocol are completely decoupled.
+
+
+
+- The OSI Reference Model
+
+    - The ISO OSI (Open Systems Interconnection) referene model was created in 1983 and revised in 1995.
+
+        7. Application
+        6. Presentation
+        5. Session
+        4. Transport
+        3. Network
+        2. Data Link
+        1. Physical
+
+
+    - 3 Central Concepts
+
+        - Services
+        - Interfaces
+        - Protocols
+
+
+
+- The TCP/IP Reference Model
+
+    - First described by Cerf and Kahn in 1974 as a replacement to ARPANET.  The design goal for the DOD
+        was for connections to remain intact as long as the source and destination machines were
+        functioning, even if intermediate machines or transmission lines were suddenly put out of
+        operation.
+
+        4. Application
+        3. Transport
+        2. Internet
+        1. Link
+
+
+    - These requirements led to the choice of a packet-switching network based on a connectionless layer
+        that runs across different networks.  The lowest layer is the 'Link Layer', which describes
+        what links such as serial lines and classic Ethernet must do to meet the needs of this
+        connectionless layer.
+
+    - The 'Internet Layer' holds the whole architecture together.  It permits hosts to inject packets into
+        any network and have them travel independently to the destination.  They may arrive in any order,
+        and it is the job of higher layers to rearrange them.  The internet layer defines an official
+        packet format and protocol called IP, plus a companion protocol called ICMP that helps it
+        function.
+
+    - The 'Transport Layer' is designed to allow source and destination peer hosts to carry on a 
+        conversation.  Two end-to-end protocols are defined here, TCP and UDP.
+
+    - TCP (Transmission Control Protocol) is a reliable, connection-oriented protocol that allows a byte 
+        stream to be delivered without error to any other machine on the Internet.  It segments the 
+        incoming byte stream into discrete messages and passes each one to the Internet Layer.  At the 
+        destination, the receiving TCP process reassembles the received messages into the output stream.  
+        TCP also handles flow control so that a fast sender cannot swamp a slow receiver.
+
+    - UDP (User Datagram Protocol) is an unreliable, connectionless protocol for applications that do not
+        want TCP's message sequencing or flow control.  It is widely used for client-server type 
+        applications in which prompt delivery is more important than accurate delivery, such as with
+        transmitting speech or video.
+
+    - The 'Application Layer' contains all of the higher-level protocols.  Early ones included TELNET,
+        FTP, and SMTP.  Many others have been added over the years, including important ones like DNS,
+        HTTP, and RTP.
+
+
+
+- Criticisms of the 2 Models
+
+    - The OSI model had bad timing when TCP/IP was already in wide use.  Two of it's layers (Session and
+        Presentation) are mostly empty.  Initial implementations were huge, unwieldy, and slow.  Some
+        people felt like it was being dictated by governments, when UNIX and TCP/IP were open and free.
+
+    - The TCP/IP model doesn't distinguish between services, interfaces, and protocols.  It's not general
+        and cannot be used to describe other protocol stacks.  There is no distinction between the
+        physical and data link layers.  Some early protocols (ie TELNET) are very hacky.
+
+
+    - In this book, a hybrid approach is used.
+
+        5. Application    = Programs that make use of the network
+        4. Transport      = Delivery guarantees and abstractions
+        3. Network        = Combine multiple links into networks and networks of networks
+        2. Link           = Send finite-length messages between directly connected computers
+        1. Physical       = Transmit bits across different kinds of media as electrical signals
+
+
+
+- Important Standards Groups
+
+    - The ITU-T (International Telecommunication Union - Telecom) standardizes international
+        telecommunications.  The USA is represented in this group by the State Department.  Examples of
+        it's recommendations include H.264 (MPEG-4) and X.509 (public key certificates).
+
+    - International standards are produced and published by ISO (International Standards Organization),
+        which has members from 161 countries, including USA (ANSI) and Great Britain (BSI).  It issues
+        standards on everything from food to manufacturing to telecommunications (where it often 
+        cooperates with ITU-T).
+
+    - NIST (National Institute of Standards and Technology) is part of the US Dept of Commerce.  It
+        issues standards that are mandatory for purchases made by the US government, except the DoD,
+        which defines its own standards.
+
+    - The IEEE (Institute of Electrical and Electronics Engineers) is a professional group that
+        develops standards in computing and electrical engineering.  IEEE's 802 comittee has standardized
+        many different types of LANs.
+
+    - The IETF (Internet Engineering Task Force) deals with standards for the Internet.  Proposals are
+        made in RFCs.
+
+    - The W3C (WWW Consortium) deals with issues related to the web, like HTML and we privacy.
