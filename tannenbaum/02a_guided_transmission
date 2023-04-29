@@ -1,0 +1,196 @@
+-----------------------------------------------------------------------
+| CHAPTER 2A - GUIDED TRANSMISSION MEDIA                              |
+-----------------------------------------------------------------------
+
+- Guided Transmission Media
+
+    - The purpose of the physical layer is to transport bits from one machine to another.  Transmission
+        media that rely on a physical cable or wire is called 'guided transmission media' because the
+        transmissions are guided along the path of the wire.
+
+    - Each type of guided media has its own set of trade-offs in terms of frequency, bandwidth, delay,
+        cost, and ease of installation and maintenance.  Bandwidth is measured in Hz.
+
+
+
+- Persistent Storage
+
+    - One way to transport data from one machine to another is to put it on persistent storage and physically
+        move the tape or disks to the destination machine.  The bandwidth with this approach is excellent,
+        but the delay is long.
+
+    - An industry standard Ultrium tape can hold 30 TB.  Sending a box of tapes across the country in 24
+        hours is faster than any computer network.  They cost about $40, and can be reused at least 10
+        times.
+
+    - For moving very large amounts of data, this is often the best solution.  AWS's 'Snowmobile' is an
+        example of this.
+
+
+
+- Twisted Pairs
+
+    - Twisted pair is one of the oldest and most common transmission media.  A 'twisted pair' consists of
+        2 insulated copper wires, typically about 1 mm thick.  Whereas 2 parallel wires make a good antenna,
+        when the wires are twisted, the waves cancel each other out.
+
+    - A signal is carried as the difference in voltage between the 2 wires.  Transmitting the signal as
+        the difference between the 2 voltage levels, as opposed to an absolute voltage, provides better
+        immunity to external noise.
+
+    - The most common application of twisted pair is in the telephone system.  Nearly all telephones are
+        connected to the telco office by a twisted pair.  Both telephone calls and ASDL internet access
+        run over these lines.
+
+    - Twisted pairs can run several km without amplification, but for longer distance the signal becomes
+        too attenuated and repeaters are needed.  When many twisted pairs run in parallel for a substantial
+        distance, such as all the wires from an apartment building to the telco office, they are bundled
+        together in a protective sheath.
+
+    - Twisted pairs can be used for transmitting either analog or digital information.  The bandwidth
+        depends on the distance and thickness of the wires, but hundreds of MB/s can be achieved for a few
+        km.
+
+    - Twisted pair-cabling comes in several varieties.  A common variety is Category 5e, which has 4 pairs
+        twisted gently and grouped together in a plastic sheath.
+
+    - Different LAN standards use the twisted pairs differently.  For instance, 100-Mbps Ethernet uses 2 of
+        the 4 pairs, one for each direction.  1-Gbps Ethernet uses all 4 pairs in both directions
+        simultaneously, which requires the receiver to factor out the signal that is transmitted.
+
+    - Links that can be used in both directions at the same time are called 'full-duplex' links.  Links
+        that can be used in either direction, but only one direction at a time, are called 'half-duplex'
+        links.  Links that can only be used in one direction are called 'simplex' links.
+
+    - The earlier Cat 3 was replaced by Cat 5, which has more twists per meter, resulting in less crosstalk
+        and better-quality signal over long distances.  Some cables in Cat 6 and Cat 7 and above can support
+        10-Gbps links often found in new office buildings.  Cat 8 has higher speeds but distances only up to 
+        30 m, so it is only used in data centers.
+
+    - Through Cat 6, these cables are referred to as UTP (Unshielded Twisted Pair) since they simply consist
+        of wires and insulators.  Cat 7 cables haved shielding on the individual twisted pairs, which
+        reduces crosstalk.
+
+
+
+- Coaxial Cable
+
+    - 'Coaxial cable' has better shelding and greater bandwidth, so it can span longer distances with
+        higher speeds than twisted pair.
+
+    - Two kinds of coaxial cable are widely used.  One kind, 50-ohm cable, is commonly used when it is
+        intended for digital transmission from the start.
+
+    - The other kind, 75-ohm, is commonly used for analog transmission and cable television.  This is for
+        historical reasons, as it was easy to interoperate with early dipole 300-ohm antennas using 4:1
+        impedance-matching transformers.  Starting in the 1990s, cable TV operators began to provide
+        internet access over cable, making 75-ohm more important for data communication.
+
+    - A coaxial cable consists of a stiff copper wire as the core, surrounded by an insulating material.
+        The insulator is encased by a cylindrical conductor, often as a closely woven braided mesh.  The
+        outer conductor is covered in a protective plastic sheath.
+
+    - The construction and shielding of the coax cable gie it a good combination of high bandwidth and
+        excellent noise immunity.  The bandwidth depends on the cable quality and length.  Modern cables
+        have a bandwidth up to 6 GHz, allowing many conversations to be transferred over a single coax
+        cable (a single tv signal might use 3.5 MHz).
+
+    - Coax cables were once widely used within the telephone system, but have now been widely replaced by
+        fiber optics on long haul routes.  It is still widely used for cable tv, MANs, and for delivering
+        high-speed Internet connectivity to homes.
+
+
+
+- Power Lines
+
+    - Besides telephone and cable television networks, electrical power lines can also be reused for data
+        communications.  Power lines have been used for low-rate communication like remote metering for
+        many years and in home to control devices (the X10 standard).  In recent years, there has been
+        renewed interest in high-rate communication over these lines.
+
+    - The most common scenario is using electrical wires inside the home.  This is convenient, since you
+        can just plug a device into the outlet and also receive data connectivity.
+
+    - The difficulty is that electrical wiring was designed to distribute power signals, not data signals.
+        Electrical signals are sent as 50-60 Hz and much higher frequency signals are needed for data
+        communication.
+
+    - Despite the difficulties, it is practical to send at least 500 Mbps short distances over typical
+        household wiring.
+
+
+
+- Fiber Optics
+
+    - In 1981, the original IBM PC ran at 4.77 MHz, and 40 years later, PCs could run a 4-core CPU at 3 GHz,
+        a 2500x improvement.  Similarly, wide area communication links went from 45 Mbps (a T3 line with the
+        telephone system) to 100 Gpbs (a modern long-distance line), a 2000x improvement.
+
+    - The achievable bandwidth with fiber technology is 50 Tbps, and we are nowhere near reaching these
+        limits.  The current practical limit of 100 Gbps is due to our inability to convert between
+        electrical and optical signals any faster.  To build higher-capacity links, many channels are
+        carried in parallel over a single fiber.
+
+    - Fiber optics are used for long-haul transmission lines in network backbones, high-speed LANs, and 
+        and high-speed Internet access such as fiber to the home.
+
+    - An optical transmission system has 3 key components - the light source, the transmission medium,
+        and the detector.  Conventially, a pulse of light indicates 1 and the absence of light indicates 0.
+        The transmission medium is an ultra-thin fiber of glass.  The detector generates an electrical
+        pulse when light falls on it.  
+
+    - By attaching a light source at one end of the fiber and a detector at the other end, we get a simplex 
+        data transmission system that accepts an electrical signal, converts and transmits it via light
+        pulses, and then reconverts the output to an electrical signal at the receiving end.
+
+    - Due to physical principles of how light rays are refracted when they pass from one medium to another
+        (for example, from glass to air), light rays can propogate for many km with virtually no loss.
+
+    - Since a light ray will be reflected internally, many different rays will be bouncing around at
+        different angles.  Each ray is said to have a different mode, so a fiber having this property is
+        known as 'multimode fiber'.  If the fiber's diameter is reduced to a few wavelengths of light
+        (10 micros vs 50 microns for multimode), light can only propogate in a straight line, yielding
+        'single-mode fiber'.
+
+    - Single-mode fibers are more expensive, but are widely used for longer distances.  They can transmit
+        signals 50x farther than multimode fibers (100 Gpbs over 100 km is practical).
+
+    - Optical fiber is made from glass, which is made from sand.  Glassmaking was known to ancient Egyptians.
+        Glass transparent enough to be used for windows (< 1mm thick) was invented during the Renaissance.
+        Glass used for modern optical fibers is so transparent that if the oceans were filled with it, you 
+        could see the seabed from the surface.
+
+    - The near-infrared part of the electromagnetic spectrum is used for light transmission.  3 wavelength
+        bands are most commonly used - 0.85, 1.30, and 1.55 microns.
+
+    - Fiber-optic cables are similar to coax, except without the braid.  The glass core is surrounded by
+        a glass cladding used to keep all light in the core.  Fibers are typically grouped in bundles,
+        protected by an outer sheath.
+
+    - Terrestrial fiber sheaths are normally laid on the ground within a meter of th esurface.  Near the
+        shore, transoceanic fiber sheaths are buried in trenches by a knd of seaplow.  In deep water, they
+        just lie on the bottom.
+
+    - Fibers can be connected with connectors (20% light loss), spliced mechanically by making careful cuts
+        (10% light loss), or fused together (almost as good as single drawn fiber).
+
+    - Either LEDs or semiconductor lasers can be used as light sources.  Photodiodes are used as the
+        receivers.
+
+
+
+- Fiber Optics vs Copper Wire
+
+    - Fiber can handle much higher bandwidths and have far lower attenuation, requiring fewer repeaters
+        over long distances.  Fiber is not affected by power surges, electromagnetic interference,
+        power failures, or corrosive chemicals in the air.
+
+    - Telephone companies like fiber, because it is thin and lightweight.  Many existing cable ducts are
+        full, and there is no room to add capacity.  Removing all copper and replacing it with fiber
+        empties the ducts, and the copper has excellent resale value.
+
+    - Fibers do not leak light and are difficult to tap, giving it good security properties against
+        eavesdroppers.
+
+    - Fiber is less familiar, and requires skills that are harder to find.  Fibers can be easily damaged
+        by being bent too much.  Also, fiber is more expensive.
