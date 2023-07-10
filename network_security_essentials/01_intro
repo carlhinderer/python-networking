@@ -1,0 +1,496 @@
+-----------------------------------------------------------------------
+| CHAPTER 1 - INTRODUCTION                                            |
+-----------------------------------------------------------------------
+
+- Eras of Information Security
+
+    1. Before widespread use of data processing equipment, security of valuable information was provided by
+         physical (ie locked file cabinets) and administrative (ie background checks) means.
+
+    2. With the introduction of computers, files and other information stored on the computer needed to be
+         protected.  This was especially true for time-shared systems and systems that could be accessed over
+         a data network.  The collection of tools needed to protect data is known as 'computer security'.
+
+    3. With the introduction of distributed systems and networks for carrying data between computers, data
+         needed to be protected during transmission.  The tools used to ensure this is 'network security',
+         and the tools used to protect an internet is 'internet security'.  Internet security is the focus of
+         this book.
+
+
+
+- The CIA Triad
+
+    - Computer security has the objective of preserving confidentiality, integrity, and availability of 
+        information system resources.
+
+
+    - Confidentiality
+
+        - 'Data confidentiality' assures that private or confidential information is not made available or
+            disclosed to unauthorized individuals.
+
+        - 'Privacy' assues that individuals control or influence what information related to them may be collected
+            and stored, and to whom it may be disclosed.
+
+
+    - Integrity
+
+        - 'Data ingegrity' assues that data (both stored and transmitted) and programs are changed only in a
+            specified and authorized manner.
+
+        - 'System integrity' assures that a system performs it's intended function is an unimpaired manner, free
+            from deliberate or unintended manipulation of the system.
+
+
+    - Availability
+
+        - This assures that systems work promptly and service is not denied to unauthorized users.
+
+
+    - Authenticity
+
+        - This is the property of being genuine and being able to be verified and trusted.  We must have 
+            confidence in the validity of a transmission, message, or message originator.  This means we must
+            verify that users are who they say they are and that each input comes from a trusted source.
+
+
+    - Accountability
+
+        - This requires that actions of an entity can be traced uniquely to that identity.  We must be able to
+            trace a security breach to a responsible party.  Systems must keep records to permit later forensic
+            analysis.
+
+
+
+- The OSI Security Architecture
+
+    - ITU-T recommendation X.800 defines the OSI security architecture.  It is useful as a way to organize the
+        task of providing security for an organization.
+
+
+    - The OSI security architecture focuses on security attacks, mechanisms, and services.
+
+        - Security attack = any action that compromises the security of information owned by an organization
+
+        - Security mechanism = a process (or device incorporating a process) that is designed to detect, prevent, or
+                                 recover from a security attack
+
+        - Security service = a processing or communication service that enhances the security of the data processing
+                               systems and information transfers of an organization, use one or more security
+                               mechanisms to counter security attacks
+
+
+
+- Security Attacks
+
+    - Passive Attacks
+
+        - Security attacks can be classified into active and passive attacks.  'Passive attacks' are in the nature of
+            eavesdropping on or monitoring transmissions.
+
+        - One type of passive attack is the 'release of message contents'.  An opponent learns the contents of
+            confidential information from a phone call, email message, or transferred file.
+
+        - Another type of passive attack is 'traffic analysis'.  For instance, an opponent could spy on traffic and
+            learn the frequency of communication between parties.
+
+        - Passive attacks are difficult to detect, since they do not involve altering data, so neither the sender or
+            receiver is aware of any changes.  Passive attacks are dealt mainly with prevention, not detection.
+
+
+    - Active Attacks
+
+        - 'Active attacks' involve modification of the data stream (or creation of a false data stream).
+
+        - A 'masquerade' takes place when one entity pretends to be a different entity.
+
+        - A 'replay' involves the passive capture of a data unit and its subsequent retransmission to produce an
+            unauthorized effect.
+
+        - 'Modification of messages' means that some portion of a legitimate message is altered, or that messages are
+            delayed or reordered.
+
+        - The 'denial of service' prevents or inhibits the normal use of communication facilities.  This attack may
+            have a specific target (ie suppress all messages to the security audit service) or may try to disrupt
+            an entire network.
+
+        - Active attacks are dealt with mainly by detecting them and attempting to recover from any disruption caused
+            by them.
+
+
+
+- Security Services
+
+    - A security services is a service provided by a protocol layer of communicating open systems and that ensures
+        adequate security of data transfers.  X.800 divides these services into 5 categories and 14 specific services.
+
+        A. Authentication
+             - Peer Entity Authentication
+             - Data-Origin Authentication
+
+        B. Access Control
+
+        C. Data Confidentiality
+            - Connection Confidentiality
+            - Connectionless Confidentiality
+            - Selective-Field Confidentiality
+            - Traffic-Flow Confidentiality
+
+        D. Data Integrity
+            - Connection Integrity with Recovery
+            - Connection Integrity without Recovery
+            - Selective-Field Connection Recovery
+            - Connectionless Integrity
+            - Selective-Field Connectionless Recovery
+
+        E. Nonrepudiation
+            - Nonrepudiation, Origin
+            - Nonrepudiation, Destination
+
+
+
+- Authentication
+
+    - The authentication service is concerned with assuring that a communication is authentic.
+
+    - In the case of a single message, the function of the authentication service is to assure the recipient that
+        the message is from the source it claims to be from.
+
+    - In the case of an ongoing message, such as the connection of a terminal to a host, there are two aspects.
+        First, the service assures that the 2 entities are authentic at connection initiation time.  Second, the
+        service must assure that the connection is not interfered with by a third party.
+
+    - 'Peer Entity Authentication' provides the corroboration of a peer identity in an association.  Peers are entities
+        that implement the same protocol in different systems.  Peer entity is used at the establishment or during
+        data transfer of a connection.  It attempts to provide confidence that an entity is not performing a
+        masquerade or an authorized replay of a previous message.
+
+    - 'Data Origin Authentication' provides for the corroboration of the source of a data unit.  This type of service
+        supports applications like email, where there are no prior actions between communicating entities.
+
+
+
+- Access Control
+
+    - Access control is the ability to limit and control the access to host systems and applications via communication
+        links.  Each identity must first be identified, or authenticated, so that access rights can be tailored to the
+        individual.
+
+
+
+- Data Confidentiality
+
+    - Confidentiality is the protection of transmitted data from passive attacks.  It also protects traffic flow from
+        analysis.
+
+    - 'Connection Confidentiality' is the protection of all user data on a connection.  'Connectionless Confidentiality'
+        is the protection of all user data in a single data block.
+
+    - 'Selective-Field Confidentiality' protects seleted fields within the user data on a connection or in a single data
+        block.
+
+    - 'Traffic-Flow Confidentiality' protects information that might be derived from observation of traffic flows.
+
+
+
+- Data Integrity
+
+    - Data integrity can also apply to a stream of messages, a single message, or selected fields within a message.
+        Again, the most useful and straightforward approach is total stream protection.
+
+    - This service may or may not include recovery.  If a violation of integrity is detected, the service may just
+        report the violation and move on, waiting for human intervention to recover.  Alternatively, mechanisms to 
+        recover from the loss of integrity may be included.
+
+    - 'Connection Integrity with Recovery' provides for the integrity of all user data on a connection and detects any
+        modification, insertion, deletion, or replay of any data in an entire sequence, with recover attempted.
+        'Connection Integrity without Recovery' is the same thing, but without recovery.
+
+    - 'Selective-Field Connection Integrity' provides for the integrity of selected fields.
+
+    - 'Connectionless Integrity' provides for the integrity of a single connectionless data block.  'Selective-Field
+        Connectionless Integrity' provides for the integrity of selected fields in a single connectionless data block.
+
+
+
+- Nonrepudiation
+
+    - The nonrepudiation service prevents either sender or receiver from denying a transmitted message.  When a message
+        is sent, the receiver can prove that the sender sent the message.  When a message is received, the sender can
+        prove that the receiver received the message.
+
+
+
+- Availability Service
+
+    - Availability is the property of a system or resource being accessible by an authorized entity, according to 
+        performance specifications for the system.  X.800 treats availability as a property associated with various
+        security services, but it makes sense to call out a specific availability service if it prevents DoS attacks,
+        for instance.
+
+
+
+- Specific Security Mechanisms
+
+    - Specific security mechanisms are implemented in a specific protocol layer, such as TCP or an application-layer
+        protocol.
+
+
+    - Encipherment
+
+        This is the use of mathematical algorithms to transform data into a from that is not readily intelligible.  The
+          transformation and subsequent recovery of the data depends on an algorithm and 0+ encryption keys.
+
+
+    - Digital Signature
+
+        This is data appended to, or a cryptographic transformation of, a data unit that allows a recipient of the data
+          unit to prove the source and integrity of the data unit and protect against forgery.
+
+
+    - Access Control
+
+        This is a variety of measures that enforce access rights to resources.
+
+
+    - Data Integrity
+
+        This is a variety of mechanisms used to assure the integrity of a data unit or stream of data units.
+
+
+    - Authentication Exchange
+
+        This is a mechanism used to ensure the identity of an entity by means of information exchange.
+
+
+    - Traffic Padding
+
+        This is the insertion of bits into gaps in a data stream to frustrate traffic analysis attempts.
+
+
+    - Routing Control
+
+        This enables selection of particular physically secure routes for certain data and allows routing changes,
+          especially if a breach is suspected.
+
+
+    - Notarization
+
+        This is the use of a trusted third party to assure certain properties of a data exchange.
+
+
+
+- Pervasive Security Mechanisms
+
+    - Pervasive security mechanisms are not specific to any particular protocol layer or security service.
+
+
+    - Trusted Functionality
+
+        This is functionality that is perceived to be correct with respect to some criteria (ie a security policy).
+
+
+    - Security Label
+
+        This is the marking bound to a resource (ie a data unit) that names or designates the security attributes of
+          the resource.
+
+
+    - Event Detection
+
+        This is the detection of security-relevant events.
+
+
+    - Security Audit Trail
+
+        This is data collected to facilitate a security audit.
+
+
+    - Security Recovery
+
+        This deals with requests from mechanisms and takes recovery actions.
+
+
+
+- Fundamental Security Design Principles
+
+    1. Economy of Mechanism
+
+         The design of security measures in hardware and software should be as simple and small as possible.  This
+           makes it easier to test and verify thoroughly.
+
+
+    2. Fail-safe Defaults
+
+         Access decisions should be based on permission rather than exclusion.  The default should be a lack of access.
+           For example, most file access systems work on this principle.
+
+
+    3. Complete Mediation
+
+         Every access must be checked against the access control mechanism.  Systems should not rely on decisions
+           retrieved from a cache.  If access decisions are cached, careful considerations should be given to how
+           changes are propogated into caches.
+
+
+    4. Open Design
+
+         Design of a security mechanism should be open rather than secret.  Encryption keys are secret, but algorithms
+           are open to public scrutiny.
+
+
+    5. Separation of Privilege
+
+         Multiple privelege attributes are required to achieve access to a restricted resource.  Two-factor authentication
+           is an example of this.
+
+
+    6. Least Privilege
+
+         Every process and every user should operate using the last set of privileges necessary to perform a task.
+           RBAC is an example of this.  Also, administrators who have special privileges should only have those
+           privileges when necessary.  When doing ordinary activities, those privileges should be withdrawn.
+
+
+    7. Least Common Mechanism
+
+         The functions shared by different users should be minimized.  This helps reduce the number of unintended
+           communication paths and reduces the amount of hardware and software on which all users depend.
+
+
+    8. Psychological Acceptability
+
+         Security mechanisms should not interfere with the work of users.  Where possible, mechanisms should be
+           transparent to users.  Also, security mechanisms should make sense to users.
+
+
+    9. Isolation
+
+         Isolation is a principle that applies in 3 contexts.
+
+           A. Public access systems should be isolated from critical resources.  If the sensitivity of data is high,
+                you may want to ensure no physical connection exists.  If using logical isolation, layers of security
+                services and mechanisms should be established.
+
+           B. Processes and files of individual users should be isolated from one another.  All modern OS's provide
+                facilities for such isolation.
+
+           C. Security mechanisms themselves should be isolated from access to them.  For example, cryptographic
+                software and keys should be kept apart from the rest of the system.
+
+
+    10. Encapsulation
+
+          Collections of procedures and objects should be hidden in an internal structure with only designated domain
+            entry points available.
+
+
+    11. Modularity
+
+          Security functions should be developed as separate, protected modules.  Each security mechanism should support
+            migrating specific components without an entire system redesign.
+
+
+    12. Layering
+
+          Multiple, overlapping protection addresses the people, technology, and operational aspects of information
+            systems.  This way, failure of an individual approach won't leave the system unprotected.  This is often
+            referred to as 'defense in depth'.
+
+
+    13. Least Astonishment
+
+          A program or UI should always respond in a way that is least likely to astonish the user.
+
+
+
+- Attack Surfaces
+
+    - An attack surface consists of the reachable and exploitable vulnerabilities in a system.
+
+
+    - Common examples include:
+
+        - Open ports on outward facing web and other servers, and code listening on those ports
+
+        - Services available on the inside of a firewall
+
+        - Code that processes incoming data, email, XML, office documents, other exchange formats
+
+        - Interfaces, SQL, web forms
+
+        - An employee with access to sensitive information
+
+
+    - Attack surfaces can be categorized as network attack surfaces, software attack surfaces, or human attack
+        surfaces.
+
+    - Identifying attack surfaces is useful for figuring out where security mechanisms are required.  Security
+        designers want to make the attack surface as small as possible.
+
+
+
+- Attack Trees
+
+    - An attack tree is a branching, hierarchical data structure that represents a set of potential techniques for
+        exploiting security vulnerabilities.  The root is the overall objective of the attack, and each path can be
+        taken to achieve the objective.
+
+
+    - For example, an attacker wants to compromise a bank account.  There are 3 components involved in authentication
+        in this system:
+
+        1. User terminal and user
+        2. Communications channel
+        3. Internet banking server
+
+
+    - Five overall attack strategies can be identified:
+
+        1. User credential compromise
+        2. Injection of commands
+        3. User credential guessing
+        4. Security policy violation (by a bank employee)
+        5. Use of known authenticated session
+
+
+
+- A Model For Network Security
+
+    - In general terms, the model for this book is that a message needs to be transferred from one party (principal)
+        to another across some sort of Internet service.  A logical information channel is established through the
+        Internet by the cooperative use of TCP/IP.
+
+
+    - All of the techniques for providing security have 2 components:
+
+        1. A security-related transformation on the information to be sent
+        2. Some secret information shared by the principals but unknown to the opponent
+
+
+    - A trusted third party may be needed to achieve secure transmission.  For example, the third party may be
+        responsible for distributing the secret information to the two principals.  Or the third party may need to
+        arbitrate disputes between the 2 principals concerning the authenticity of a message transmission.
+
+
+    - This general model shows that there are 4 basic tasks in designing a particular security service:
+
+        1. Design an algorithm for performing the security-related transformation
+        2. Generate the secret information to be used with the algorithm
+        3. Develop methods for the distribution and sharing of the secret information
+        4. Specify a protocol to be used by the 2 principals to make use of the security algorithm and secret information
+
+
+    - Chapters 2-9 in this book follow this general model.  Chapters 10-12 look at system security concerns such as 
+        protecting against worms, viruses, and other similar attacks.
+
+
+
+- Standards
+
+    - The NIST is a US federal agency that deals with measurement science, standards, and technology related to US
+        government use and promotion of US private-sector innovation.
+
+    - The ISOC (Internet Society) is a professional membership society with worldwide membershipt.  It provides
+        leadership for groups such as the IETF and IAB.  These organizations develop Internet standards and related
+        specs that are published as RFCs.
