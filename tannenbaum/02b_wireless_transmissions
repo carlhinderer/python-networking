@@ -1,0 +1,183 @@
+-----------------------------------------------------------------------
+| CHAPTER 2B - WIRELESS TRANSMISSION                                  |
+-----------------------------------------------------------------------
+
+- The Electromagnetic Spectrum
+
+    - When electrons move, they create electromagnetic waves that can propogate through space, even in a
+        vacuum.  These waves were predicted by James Clerk Maxwell in 1865 and first observed by Heinrich
+        Hertz in 1887.  The number of oscillations per second of a wave is called its 'frequency' (measured
+        in Hz).  The distance between 2 consecutive maxima (or minima) is called the 'wavelength'.  By
+        convention, frequency is denoted f and wavelength is denoted lambda.
+
+    - When an antenna is attached to an electrical circuit, the electromagnetic waves can be broadcast
+        efficiently and received by a receiver some distance away.  All wireless communication is based on
+        this principle.
+
+    - In a vacuum, all electromagnetic waves travel at the same speed, no matter what their frequency.  This
+        speed is known as the 'speed of light' (3*10^8 m/s, denoted c).  In a vacuum, f * lambda = c.
+        Since c is a constant, we can find f from lambda or lambda from f.
+
+
+    - The electromagnetic spectrum:
+
+        10^0  - 10^4  Hz
+        10^4  - 10^8  Hz   = Radio
+        10^8  - 10^11 Hz   = Microwave
+        10^11 - 10^14 Hz   = Infrared
+        10^14 - 10^16 Hz   = Visible Light and UV
+        10^16 - 10^22 Hz   = X-Ray
+        10^22 +            = Gamma ray
+
+
+    - ITU-T Bands
+
+        10^4  - 10^5  Hz   = LF   (Twisted pair, Maritime)
+        10^5  - 10^6  Hz   = MF   (Twisted pair, Coax, Maritime, AM Radio)
+        10^6  - 10^7  Hz   = HF   (Twisted pair, Coax, AM Radio)
+        10^7  - 10^8  Hz   = VHF  (Twisted pair, Coax, FM Radio, TV)
+        10^8  - 10^9  Hz   = UHF  (Twisted pair, Coax, FM Radio, TV)
+        10^9  - 10^10 Hz   = SHF  (Satellite and Terrestrial Microwave)
+        10^10 - 10^11 Hz   = EHF  (Satellite and Terrestrial Microwave)
+        ...
+        10^14 - 10^15      = Fiber Optics
+
+
+    - The radio, microwave, infrared, and visible light portions can all be used for transmitting data by
+        modulating the amplitude, frequency, or phase of the waves.  The higher bands would be even better
+        due to higher frequencies, but they are had to produce and modulate, do not propogate well through
+        buildings, and are dangerous to living things.
+
+    - The theoretical basis for communication tells us that the amount of information a signal such as
+        an electromagnetic wave can carry depends on received power and is proportional to its bandwidth.
+
+    - Most transmissions use a relatively narrow frequency band and concentrate signal power in this 
+        narrow band to use the spectrum efficiently.  However, there are 3 types of transmission that make
+        use of wider frequency bands - Frequency Hopping Spream Spectrum, Direct Sequence Spread Spectrum,
+        and Ultra-Wideband.
+
+
+
+- Frequency Hopping Spream Spectrum
+
+    - In 'frequency hopping spread spectrum', a transmitter hops from frequency to frequency hundreds of
+        times per second.  
+
+    - It is popular for military communication because it makes transmission hard to detect and almost 
+        impossible to jam.
+
+    - It also offers resistance to narrowband interference, because the receiver will not be stuck on an
+        impaired frequency long enough to shut down communication.  This technique is widely used in 
+        Bluetooth and older versions of 802.11.
+
+
+
+- Direct Sequence Spread Spectrum
+
+    - 'Direct sequence spread spectrum' uses a code sequence to spread the data signal over a wider 
+        frequency band.  It is widely used to let multiple signals share the same frequency band.  These
+        signals can be given different codes, a method called 'Code Division Multiple Access'.
+
+    - This method forms the basis of 3G mobile phone networks and is also used in GPS.
+
+
+
+- Ultra-Wideband Communication
+
+    - 'UWB' communication sends a series of low-energy rapid pulses, varying their carrier frequences to
+        communicate information.  The rapid transitions lead to a signal that is spread out over a very
+        wide frequency band.
+
+    - Since it is spread across a large range of frequencies, it can tolerate a relatively strong
+        interference from other narrowband signals.  Also, since it uses very little energy at any given
+        frequency, it doesn't cause harmful interference to other narrowband signals.
+
+    - This is popular for short-distance indoor applications, as well as precision radar imaging and
+        location-tracking technologies.
+
+
+
+- Radio Transmission
+
+    - Radio frequency (RF) waves are easy to generate, can travel long distances, and can penetrate buildings
+        easily, so they are widely used for communications, both indoors and outdoors.  Radio waves are
+        omnidirectional, so the transmitter and receiver do not need to be carefully aligned physically.
+
+    - The properties of radio waves are frequency dependent.  At low frequencies, they pass through objects
+        well, but power falls off sharply with distance from the source.  This attenuation is called
+        'path loss'.  At high frequencies, radio waves tend to travel in a straight line and bounce off 
+        of obstacles.
+
+    - At all frequencies, radio waves are subject to interference from motors and other electrical
+        equipment.
+
+    - Radio waves can travel long distances, which makes interference between users a problem.  For this
+        reason, all governments tightly regulate the use of radio transmitters.
+
+    - In the VLF, LF, and MF bands, radio waves follow the ground.  These waves can be detected for
+        perhaps 1000 km in the lower frequencies, less in the higher ones.  AM radio broadcasting uses the
+        MF band, which is why the signals travel a long distance.  Radio waves in these bands pass
+        through buildings easily.
+
+    - In the HF and VHF bands, the ground waves tend to be absorbed by the earth.  However, the waves
+        that reach the ionosphere (a layer of charged particles circling the earth at a height of 100-500 km)
+        are refracted by it and sent back to earth.  Amateur radio operators (hams) use these bands to
+        talk long distance.
+
+
+
+- Microwave Transmission
+
+    - Above 100 MHz, waves travel in nearly straight lines and can be narrowly focused.  Concentrating all
+        the energy into a small beam with a parabolic antenna (like the familiar satellite tv dish) gives
+        a much higher signal-to-noise ratio, but the transmitting and receiving antennas must be
+        accurately aligned with each other.
+
+    - This directionality means that multiple transmitters lined up in a row can communicate with multiple
+        receivers in a row without interference.
+
+    - Before fiber optics, for decades these microwaves formed the heart of the long-distance telephone
+        transmission system.  In fact, MCI (Microwave Communications, Inc.) was one of AT&T's first
+        competitors after it was deregulated, and it built its entire system with microwave communications
+        passing between towers tens of kms apart.
+
+    - Microwaves are directional.  If towers are too far apart, the earth will get in the way, repeaters
+        are needed periodically.  The taller the towers, the farther apart they can be.
+
+    - Microwaves do not pass through buildings well.  Also, when waves are refracted off of atmospheric
+        layers, they may arrive out of phase with the direct wave, an effect known as 'multipath fading'.
+
+    - Microwave communication is widely used for long-distance telephone, mobile phones, television
+        distribution, and other purposes where a severe shortage of spectrum has developed.  Key advantages
+        over fiber include remvoing the need for right-of-way to lay cables.
+
+
+
+- Infrared Transmission
+
+    - Unguided infrared waves are widely used for short-range communication.  Remote controls use this type
+        of communication.  They are relatively directional, cheap, and easy to build, but do not pass
+        through solid objects.
+
+    - In general, as we go from long-wave radio toward visible light, the waves behave more like light
+        and less like radio.
+
+    - The fact that infrared waves do not pass through solid walls can also be a plus.  A system in one
+        room won't affect another room, they are difficult to eavesdrop on, and you don't need a government
+        license to operate an infrared system.
+
+
+
+- Light Transmission
+
+    - Unguided optical signaling has been in use for centuries (think Paul Revere).  A more modern
+        application is to connect the LANs in 2 buildings via lasers mounted on their rooftops.  Optical
+        signaling using lasers is inherently unidirectional, so each end needs its own laser and its own
+        photodetector.
+
+    - This scheme offers very high bandwidth at a very low cost, and it is relatively secure since it is
+        difficult to tap a laser beam.  It's easy to install, and doesn't require an FCC license.  However,
+        the beam has to be aimed extremely precisely, and lasers cannot penetrate rain or thick fog.  This
+        is not an issue when they are used to connect 2 spacecraft.
+
+    - 
