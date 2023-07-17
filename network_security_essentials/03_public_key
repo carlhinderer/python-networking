@@ -1,0 +1,148 @@
+-----------------------------------------------------------------------
+| CHAPTER 3 - PUBLIC-KEY CRYPTOGRAPHY & MESSAGE AUTHENTICATION        |
+-----------------------------------------------------------------------
+
+- Approaches to Message Authentication
+
+    - Encryption protects against passive attacks such as eavesdropping.  A different requirement is to prevent
+        against active attacks such as falsification of data and transactions.  Protection against such
+        attacks is known as message authentication.
+
+    - A message, file, document, or other collection of data is 'authentic' when it is genuine and comes from
+        its alleged source.  'Message authentication' is a procedure that allows communicating parties to
+        verify the received messages are authentic.
+
+    - The two important aspects are to verify the the message contents have not been altered and that the source
+        is authentic.  We may also wish to verify a message's timeliness (to ensure it has not been
+        artificially delayed and replayed) and sequence relative to other messages.
+
+    - It would seem possible to perform authentication using symmetric encryption, if we included an
+        error-detection code, sequence number, and timestamp.  In this case, only the sender and receiver would
+        have the shared key.  It is not sufficient, however.  For example, an attacker could reorder the blocks
+        of ciphertext in a message.
+
+
+
+- Message Authentication without Message Encryption
+
+    - With all of these approaches, an authentication tag is generated and appended to each message for transmission.
+        The message itself is not encrypted and can be read at the destination independent of the authentication
+        function.
+
+    - Because these approaches do not encrypt the message, confidentiality is not provided.  However, it is possible
+        to provide both authentication and confidentiality by encrypting the message plus it's authentication tag.
+        Typically, message authentication is provided as a separate function.
+
+
+    - There are 3 situations in which message authentication without confidentiality is preferable:
+
+        1. The same message is broadcast to a number of destinations.  Examples include a notification that a network
+             is not available or an alarm signal in a control center.
+
+        2. Once side has a heavy load and cannot afford to decrypt all incoming messages.  Authentication is carried
+             out on a selective basis with messages being chosen at random for checking.
+
+        3. Authentication of a computer program in plaintext.
+
+
+
+- MAC (Message Authentication Code)
+
+    - One authentication technique is to use a secret key to generate a small block of data, known as a 'MAC', which
+        is appended to the message.
+
+    - Two communicating parties share a secret.  When A sends a message to B, it calculates the MAC as a function of
+        the message and key, and sends it along with the message.  The recipient performs the same function on the
+        received message and the secret key, and ensures they match.
+
+
+    - Assuming only the sender and receiver have the secret key, we know:
+
+        1. The message has not been altered.
+        2. The receiver is assured the message is from the alleged sender.
+        3. If the message includes a sequence number, the receiver can be assured of the proper sequence.
+
+
+    - A number of algorithms could be used to generate the code.  The NIST recommends using DES.  DES is used to
+        generate ciphertext, and the last 16 or 32 bits are the MAC.
+
+
+
+- One-Way Hash Function
+
+    - An alternative technique for authentication is a 'one-way hash function'.  A hash function accepts a variable-size
+        message M and produces a fixed-size digest H(M) as output.  Unlike the MAC, a hash function does not take a
+        secret key as input.
+
+
+    - There are 3 ways in which the message can be authenticated:
+
+        1. The message digest can be encrypted using conventional encryption if the sender and receiver have a shared
+             key.
+
+        2. The message digest can be encrypted using public-key encryption.  This provides a digital signature as well
+             as message authentication, and does not require the distribution of keys to cooperating parties.
+
+        3. Encryption can be avoided altogether.  The sender and receiver share a secret key, and the message 
+             concatenated with the key is input into the hash function.  The receiver can use the secret key to
+             recompute the hash of the message concatenated with the secret key.  A variation of this called 'HMAC'
+             is used in IPSec and SNMPv3.
+
+
+
+- Secure Hash Functions
+
+    - The one-way hash function, or 'secure hash function', is used in message authentication and digital signatures.
+        It is used to produce a 'fingerprint' of a file, message, or other block of data.  To be useful for message
+        authentication, a hash function H must have the following properties:
+
+        1. H can be applied to a block of data of any size
+
+        2. H produces a fixed-length output
+
+        3. H(x) is relatively easy to produce for any given x, making both hardware and software implementations
+             practical
+
+        4. For any given code h, it is computationally infeasible to find x such that H(x) = h.  A hash function with
+             this property is referred to as 'one-way' or 'preimage resistant'.
+
+        5. For any given block x, it is computationally infeasible to find y != x such that H(y) = H(x).  A hash
+             function with this property is called 'second preimage resistant' or 'weak collision resistant'.
+
+        6. It is computationally infeasible to find any pair (x, y) such that H(x) = H(y).  A hash function with this
+             property is called 'collision resistant' or 'strong collision resistant'.
+
+
+    - As with symmetric encryption, brute-force attacks and cryptanalysis are the two approaches to attacking a secure
+        hash function.
+
+
+
+- Simple Hash Functions
+
+    - All hash functions operate using the same general principles.  The input is view as a sequence of n-bit blocks.
+        The input is processed one block at a time to produce an n-bit hash function.
+
+
+    - One of the simplest hash functions is the bit-by-by XOR of every block.  This is known as a 'longitudinal
+        redundancy check'.  It is reasonably effective for random data.  For more predicably formatted data, for
+        instance text files in which the higher-order octet is always zero, the function is less effective.
+
+          Ci = bi1 XOR bi2 XOR ... XOR bim
+
+
+    - A simple way to improve this is to perform a 1-bit circular shift on the hash value after each block is processed.
+        This randomizes the input and overcomes any regularities that appear in the input.
+
+    - Even using the second method, there are effective attacks possible against these types of hash functions, even
+        if both the message and hash code are encrypted.
+
+
+
+- The SHA (Secure Hash Algorithm) Has Function
+
+    - Since all other widely used hash functions (ie MD5) has been found to have substantial weaknesses, SHA was the
+        last remaining standardized hash algorithm by 2005.  SHA was developed in 1993 and SHA-1 was released as an
+        update in 1995.  It is based on the hash function MD4.
+
+    - 
